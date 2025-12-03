@@ -1,3 +1,4 @@
+import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
 import { TrustedBySection } from "@/components/trusted-by-section"
 import { WhatsNewSection } from "@/components/whats-new-section"
@@ -40,6 +41,7 @@ export const metadata = {
 export default function Page() {
   return (
     <main className="min-h-screen">
+      <Header />
       <HeroSection />
       <TrustedBySection />
       <WhatsNewSection />
