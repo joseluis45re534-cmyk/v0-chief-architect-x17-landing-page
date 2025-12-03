@@ -6,6 +6,10 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "pages:deploy": "npm run pages:build && wrangler pages deploy",
+    "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat",
+    "pages:watch": "npx @cloudflare/next-on-pages --watch",
     "start": "next start"
   },
   "dependencies": {

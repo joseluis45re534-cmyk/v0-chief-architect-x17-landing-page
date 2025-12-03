@@ -1,30 +1,53 @@
-# Chief Architect X17 landing page
+# Chief Architect X17 Landing Page
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+This is a high-conversion, SEO-optimized landing page for Chief Architect X17 software.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/moadsoufianes-projects/v0-chief-architect-x17-landing-page-kb)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/foWTxYKmsng)
+## Deploying to Cloudflare Pages
 
-## Overview
+### Method 1: Git Integration (Recommended)
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+1. Push your code to GitHub/GitLab
+2. Go to [Cloudflare Pages Dashboard](https://dash.cloudflare.com/pages)
+3. Click "Create a project" → "Connect to Git"
+4. Select your repository
+5. Configure build settings:
+   - **Build command:** `npm run build`
+   - **Build output directory:** `out`
+   - **Node version:** `20`
+6. Click "Save and Deploy"
 
-## Deployment
+### Method 2: Direct Upload
 
-Your project is live at:
+\`\`\`bash
+# Install Wrangler CLI
+npm install -g wrangler
 
-**[https://vercel.com/moadsoufianes-projects/v0-chief-architect-x17-landing-page-kb](https://vercel.com/moadsoufianes-projects/v0-chief-architect-x17-landing-page-kb)**
+# Login to Cloudflare
+wrangler login
 
-## Build your app
+# Build the project
+npm run build
 
-Continue building your app on:
+# Deploy to Cloudflare Pages
+wrangler pages deploy out --project-name=chief-architect-x17
+\`\`\`
 
-**[https://v0.app/chat/foWTxYKmsng](https://v0.app/chat/foWTxYKmsng)**
+## Environment Variables
 
-## How It Works
+If you need environment variables, add them in the Cloudflare Pages dashboard under:
+Settings → Environment Variables
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Local Development
+
+\`\`\`bash
+npm install
+npm run dev
+\`\`\`
+
+## Build for Production
+
+\`\`\`bash
+npm run build
+\`\`\`
+
+This creates a static export in the `out` directory optimized for Cloudflare Pages.

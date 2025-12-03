@@ -1,0 +1,12 @@
+name = "chief-architect-x17-landing"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "out"
+
+[site]
+bucket = "./out"
+
+[[rules]]
+type = "redirect"
+status = 301
+from = "/*"
+to = "/:splat"
