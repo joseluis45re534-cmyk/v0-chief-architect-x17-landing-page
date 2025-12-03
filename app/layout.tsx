@@ -3,11 +3,12 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import { CookieBanner } from "@/components/cookie-banner"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
-// <CHANGE> Updated metadata for Chief Architect X17 SEO
+// Updated metadata for Chief Architect X17 SEO
 export const metadata: Metadata = {
   title: "Chief Architect X17 – The Most Advanced 3D Architectural Design Software",
   description:
@@ -56,6 +57,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`font-sans antialiased`}>
         {children}
+        <CookieBanner />
         <Analytics />
       </body>
     </html>
