@@ -37,11 +37,6 @@ export function Footer() {
               </li>
               <li>
                 <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  Free Trial
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
                   System Requirements
                 </a>
               </li>

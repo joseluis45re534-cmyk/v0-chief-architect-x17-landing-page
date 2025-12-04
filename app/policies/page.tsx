@@ -84,10 +84,6 @@ export default function PoliciesPage() {
                   <strong>Processing Time:</strong> Refunds are typically processed within 5-7 business days and will be
                   credited back to your original payment method.
                 </p>
-                <p>
-                  <strong>Free Trial:</strong> We also offer a 30-day free trial so you can test the software before
-                  making a purchase decision.
-                </p>
               </div>
             </div>
 

@@ -27,16 +27,34 @@ export function HeroSection() {
     return () => observer.disconnect()
   }, [])
 
-  const handleTrialClick = () => {
-    // Track as a lead generation event
+  const handleBuyNowClick = () => {
+    // Track add_to_cart event for analytics (Google Analytics 4)
     if (typeof window !== "undefined" && (window as any).gtag) {
-      ;(window as any).gtag("event", "generate_lead", {
+      ;(window as any).gtag("event", "add_to_cart", {
         currency: "USD",
         value: 85.75,
         items: [
           {
-            item_id: "chief-architect-x17-trial",
-            item_name: "Chief Architect X17 Free Trial",
+            item_id: "chief-architect-x17",
+            item_name: "Chief Architect X17 Full Version",
+            price: 85.75,
+            quantity: 1,
+          },
+        ],
+      })
+    }
+
+    // Also track as begin_checkout
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      ;(window as any).gtag("event", "begin_checkout", {
+        currency: "USD",
+        value: 85.75,
+        items: [
+          {
+            item_id: "chief-architect-x17",
+            item_name: "Chief Architect X17 Full Version",
+            price: 85.75,
+            quantity: 1,
           },
         ],
       })
@@ -82,11 +100,12 @@ export function HeroSection() {
                 size="lg"
                 className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300"
                 style={{ backgroundColor: "#1a3e6e" }}
-                onClick={handleTrialClick}
-                data-event="generate_lead"
-                data-product="chief-architect-x17-trial"
+                onClick={handleBuyNowClick}
+                data-event="add_to_cart"
+                data-product="chief-architect-x17"
+                data-value="85.75"
               >
-                Download Free Trial
+                Buy Now - $85.75
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
 
@@ -110,7 +129,7 @@ export function HeroSection() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>Free 30-day trial</span>
+                <span>One-time purchase</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="h-5 w-5" style={{ color: "#2d5a91" }} fill="currentColor" viewBox="0 0 20 20">
@@ -120,7 +139,7 @@ export function HeroSection() {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span>No credit card required</span>
+                <span>Lifetime access</span>
               </div>
             </div>
           </div>

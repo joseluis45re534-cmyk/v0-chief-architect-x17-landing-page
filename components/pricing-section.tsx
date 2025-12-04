@@ -123,18 +123,6 @@ export function PricingSection() {
             </Button>
           </div>
         </div>
-
-        <div className="text-center mt-12 animate-on-scroll">
-          <p className="text-gray-600 mb-4">Not ready to buy? Try Chief Architect X17 free for 30 days.</p>
-          <Button
-            size="lg"
-            variant="outline"
-            className="text-lg px-8 py-6 border-2 bg-transparent hover:bg-[#2d5a91] hover:text-white transition-all"
-            style={{ borderColor: "#2d5a91", color: "#1a3e6e" }}
-          >
-            Start Free Trial
-          </Button>
-        </div>
       </div>
     </section>
   )
