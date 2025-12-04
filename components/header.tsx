@@ -19,6 +19,40 @@ export function Header() {
     { href: "/policies/payment", label: "Payment & Security" },
   ]
 
+  const handleBuyNowClick = () => {
+    // Track add_to_cart event for analytics (Google Analytics 4)
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      ;(window as any).gtag("event", "add_to_cart", {
+        currency: "USD",
+        value: 85.75,
+        items: [
+          {
+            item_id: "chief-architect-x17",
+            item_name: "Chief Architect X17 Full Version",
+            price: 85.75,
+            quantity: 1,
+          },
+        ],
+      })
+    }
+
+    // Also track as a key event
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      ;(window as any).gtag("event", "begin_checkout", {
+        currency: "USD",
+        value: 85.75,
+        items: [
+          {
+            item_id: "chief-architect-x17",
+            item_name: "Chief Architect X17 Full Version",
+            price: 85.75,
+            quantity: 1,
+          },
+        ],
+      })
+    }
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
@@ -68,6 +102,10 @@ export function Header() {
               size="lg"
               className="font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300"
               style={{ backgroundColor: "#1a3e6e" }}
+              onClick={handleBuyNowClick}
+              data-event="add_to_cart"
+              data-product="chief-architect-x17"
+              data-value="85.75"
             >
               Buy Now
             </Button>
@@ -120,7 +158,13 @@ export function Header() {
                 size="lg"
                 className="font-semibold text-white w-full"
                 style={{ backgroundColor: "#1a3e6e" }}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  handleBuyNowClick()
+                  setMobileMenuOpen(false)
+                }}
+                data-event="add_to_cart"
+                data-product="chief-architect-x17"
+                data-value="85.75"
               >
                 Buy Now
               </Button>

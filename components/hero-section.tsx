@@ -27,6 +27,22 @@ export function HeroSection() {
     return () => observer.disconnect()
   }, [])
 
+  const handleTrialClick = () => {
+    // Track as a lead generation event
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      ;(window as any).gtag("event", "generate_lead", {
+        currency: "USD",
+        value: 85.75,
+        items: [
+          {
+            item_id: "chief-architect-x17-trial",
+            item_name: "Chief Architect X17 Free Trial",
+          },
+        ],
+      })
+    }
+  }
+
   return (
     <section
       ref={heroRef}
@@ -66,6 +82,9 @@ export function HeroSection() {
                 size="lg"
                 className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300"
                 style={{ backgroundColor: "#1a3e6e" }}
+                onClick={handleTrialClick}
+                data-event="generate_lead"
+                data-product="chief-architect-x17-trial"
               >
                 Download Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -110,7 +129,7 @@ export function HeroSection() {
           <div className="animate-on-scroll relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/UP-683x1024-WUh9cXf8CIy8Kb6KlM4bmJZlUw9YiV.webp"
+                src="/images/up-683x1024.webp"
                 alt="Chief Architect X17 architectural design software interface with 3D modeling"
                 className="w-full h-auto"
               />

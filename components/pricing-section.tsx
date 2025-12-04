@@ -27,6 +27,40 @@ export function PricingSection() {
     return () => observer.disconnect()
   }, [])
 
+  const handleBuyNowClick = () => {
+    // Track add_to_cart event for analytics (Google Analytics 4)
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      ;(window as any).gtag("event", "add_to_cart", {
+        currency: "USD",
+        value: 85.75,
+        items: [
+          {
+            item_id: "chief-architect-x17",
+            item_name: "Chief Architect X17 Full Version",
+            price: 85.75,
+            quantity: 1,
+          },
+        ],
+      })
+    }
+
+    // Also track as a key event
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      ;(window as any).gtag("event", "begin_checkout", {
+        currency: "USD",
+        value: 85.75,
+        items: [
+          {
+            item_id: "chief-architect-x17",
+            item_name: "Chief Architect X17 Full Version",
+            price: 85.75,
+            quantity: 1,
+          },
+        ],
+      })
+    }
+  }
+
   const features = [
     "Full 3D modeling capabilities",
     "AI-assisted drafting",
@@ -80,6 +114,10 @@ export function PricingSection() {
             <Button
               className="w-full py-6 text-lg font-semibold transition-all duration-300 hover:opacity-90"
               style={{ backgroundColor: "#1a3e6e" }}
+              onClick={handleBuyNowClick}
+              data-event="add_to_cart"
+              data-product="chief-architect-x17"
+              data-value="85.75"
             >
               Buy Now - $85.75
             </Button>
