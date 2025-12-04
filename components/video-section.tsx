@@ -40,7 +40,7 @@ export function VideoSection() {
           </div>
 
           <div className="animate-on-scroll relative rounded-2xl overflow-hidden shadow-2xl">
-            <video className="w-full h-auto" controls poster="/chief-architect-x17-demo-video-thumbnail-architect.jpg">
+            <video className="w-full h-auto" controls poster="/video-thumbnail.jpg">
               <source
                 src="https://video-dl.chiefarchitect.com/live/videos/R3pL23xng10qqJ2N86H2mL9gmH/34qgkcsL5J33G0n5vmFL2hv9gm.mp4"
                 type="video/mp4"
