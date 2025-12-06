@@ -31,7 +31,12 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a
+                  href="https://www.youtube.com/watch?v=zJywP3CIIlY&list=PL7J4ch5cuz99yYXTcrK3WO0oT-4SDJFT0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
                   Training Videos
                 </a>
               </li>
@@ -68,35 +73,45 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/contact" className="text-gray-300 hover:text-white transition-colors">
                   Contact
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Policies */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Legal</h4>
+            <h4 className="text-lg font-semibold mb-4">Policies</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/policies/privacy" className="text-gray-300 hover:text-white transition-colors">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  Terms of Service
+                <a href="/policies/terms" className="text-gray-300 hover:text-white transition-colors">
+                  Terms & Conditions
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
-                  License Agreement
+                <a href="/policies/refund" className="text-gray-300 hover:text-white transition-colors">
+                  Refund & Return Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-300 hover:text-white transition-colors">
+                <a href="/policies/cookies" className="text-gray-300 hover:text-white transition-colors">
                   Cookie Policy
+                </a>
+              </li>
+              <li>
+                <a href="/policies/disclaimer" className="text-gray-300 hover:text-white transition-colors">
+                  Disclaimer
+                </a>
+              </li>
+              <li>
+                <a href="/policies/payment" className="text-gray-300 hover:text-white transition-colors">
+                  Payment & Security
                 </a>
               </li>
             </ul>
