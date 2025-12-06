@@ -59,6 +59,9 @@ export function PricingSection() {
         ],
       })
     }
+
+    // Redirect to Whop payment page
+    window.location.href = "https://whop.com/checkout/plan_qLhu17IHFgcUq"
   }
 
   const features = [
@@ -77,7 +80,7 @@ export function PricingSection() {
   ]
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28" style={{ backgroundColor: "#f0f4f8" }}>
+    <section ref={sectionRef} id="pricing" className="py-20 md:py-28" style={{ backgroundColor: "#f0f4f8" }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-on-scroll">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance" style={{ color: "#1a3e6e" }}>

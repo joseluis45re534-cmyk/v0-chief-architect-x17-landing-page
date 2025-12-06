@@ -51,6 +51,12 @@ export function Header() {
         ],
       })
     }
+
+    // Scroll to pricing section
+    const pricingSection = document.getElementById("pricing")
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: "smooth", block: "center" })
+    }
   }
 
   return (

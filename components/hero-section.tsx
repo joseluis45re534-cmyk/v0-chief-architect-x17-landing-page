@@ -44,7 +44,7 @@ export function HeroSection() {
       })
     }
 
-    // Also track as begin_checkout
+    // Track as begin_checkout
     if (typeof window !== "undefined" && (window as any).gtag) {
       ;(window as any).gtag("event", "begin_checkout", {
         currency: "USD",
@@ -58,6 +58,12 @@ export function HeroSection() {
           },
         ],
       })
+    }
+
+    // Scroll to pricing section
+    const pricingSection = document.getElementById("pricing")
+    if (pricingSection) {
+      pricingSection.scrollIntoView({ behavior: "smooth", block: "center" })
     }
   }
 
