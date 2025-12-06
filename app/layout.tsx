@@ -55,6 +55,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <script src="//code.jivosite.com/widget/5YJwlXjzAo" async></script>
       </head>
       <body className={`font-sans antialiased`}>
         {children}
