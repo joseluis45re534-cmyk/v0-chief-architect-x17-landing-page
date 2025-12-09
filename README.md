@@ -1,6 +1,6 @@
 # Chief Architect X17 Landing Page
 
-This is a high-conversion, SEO-optimized landing page for Chief Architect X17 software.
+This is a high-conversion, SEO-optimized landing page for Chief Architect X17 software with Stripe payment integration.
 
 ## Deploying to Cloudflare Pages
 
@@ -34,8 +34,22 @@ wrangler pages deploy out --project-name=chief-architect-x17
 
 ## Environment Variables
 
-If you need environment variables, add them in the Cloudflare Pages dashboard under:
-Settings → Environment Variables
+**REQUIRED:** Add the following environment variable in the Cloudflare Pages dashboard:
+
+Settings → Environment Variables → Add variable
+
+- **STRIPE_SECRET_KEY**: Your Stripe secret key (starts with `sk_live_...` or `sk_test_...`)
+
+The Stripe publishable key is already configured in the code: `pk_live_51ScCjZJ2ODoAACday2ietOYSGx87Ij93FJNEySYL4lKvUjNesIeebvCHKmsF4gHboG9Oo3jKNniAaB7Ql5AnSMrs00iFXpiCZw`
+
+## Stripe Integration
+
+The landing page uses Stripe Checkout for payments:
+
+- When users click "Buy Now", a Stripe Checkout session is created via Cloudflare Pages Functions
+- Users are redirected to Stripe's secure payment page
+- After successful payment, users are redirected to `/success`
+- Price: $85.75 for Chief Architect X17 Full Version
 
 ## Local Development
 
@@ -43,6 +57,8 @@ Settings → Environment Variables
 npm install
 npm run dev
 \`\`\`
+
+For local Stripe testing, you'll need to add the `STRIPE_SECRET_KEY` to your local environment.
 
 ## Build for Production
 
