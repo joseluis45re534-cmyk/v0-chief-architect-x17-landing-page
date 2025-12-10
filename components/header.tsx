@@ -9,7 +9,6 @@ import { useState } from "react"
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [policiesOpen, setPoliciesOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
 
   const policyLinks = [
     { href: "/policies/privacy", label: "Privacy Policy" },
@@ -20,9 +19,7 @@ export function Header() {
     { href: "/policies/payment", label: "Payment & Security" },
   ]
 
-  const handleBuyNowClick = async () => {
-    setIsLoading(true)
-
+  const handleBuyNowClick = () => {
     // Track add_to_cart event for analytics (Google Analytics 4)
     if (typeof window !== "undefined" && (window as any).gtag) {
       ;(window as any).gtag("event", "add_to_cart", {
@@ -37,10 +34,8 @@ export function Header() {
           },
         ],
       })
-    }
 
-    // Also track as a key event
-    if (typeof window !== "undefined" && (window as any).gtag) {
+      // Also track as begin_checkout
       ;(window as any).gtag("event", "begin_checkout", {
         currency: "USD",
         value: 85.75,
@@ -55,31 +50,9 @@ export function Header() {
       })
     }
 
-    try {
-      // Call Cloudflare Pages Function to create Stripe checkout session
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-
-      const { url, error } = await response.json()
-
-      if (error) {
-        console.error("Stripe checkout error:", error)
-        alert("Unable to process checkout. Please try again or contact support.")
-        setIsLoading(false)
-        return
-      }
-
-      // Redirect to Stripe Checkout
-      window.location.href = url
-    } catch (error) {
-      console.error("Checkout error:", error)
-      alert("Unable to process checkout. Please try again or contact support.")
-      setIsLoading(false)
-    }
+    // Redirect to Stripe Payment Link
+    window.location.href =
+      "https://buy.stripe.com/test_XXXXXXXX?client_reference_id=chief-architect-x17&prefilled_email="
   }
 
   return (
@@ -132,12 +105,11 @@ export function Header() {
               className="font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300"
               style={{ backgroundColor: "#1a3e6e" }}
               onClick={handleBuyNowClick}
-              disabled={isLoading}
               data-event="add_to_cart"
               data-product="chief-architect-x17"
               data-value="85.75"
             >
-              {isLoading ? "Processing..." : "Buy Now"}
+              Buy Now
             </Button>
           </nav>
 
@@ -192,12 +164,11 @@ export function Header() {
                   handleBuyNowClick()
                   setMobileMenuOpen(false)
                 }}
-                disabled={isLoading}
                 data-event="add_to_cart"
                 data-product="chief-architect-x17"
                 data-value="85.75"
               >
-                {isLoading ? "Processing..." : "Buy Now"}
+                Buy Now
               </Button>
             </nav>
           </div>

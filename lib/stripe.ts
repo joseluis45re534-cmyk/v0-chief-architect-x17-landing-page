@@ -10,5 +10,9 @@ export const STRIPE_PRODUCT = {
   name: "Chief Architect X17 - Full Version",
   price: 85.75,
   currency: "USD",
-  priceId: "price_1234567890", // Replace with actual Stripe Price ID when created
+  // You need to create a Payment Link in your Stripe Dashboard
+  // Go to: https://dashboard.stripe.com/payment-links
+  // Create a new Payment Link for $85.75 USD
+  // Then paste the Payment Link URL here
+  paymentLink: "https://buy.stripe.com/test_XXXXXXXX", // Replace with actual Stripe Payment Link
 }
