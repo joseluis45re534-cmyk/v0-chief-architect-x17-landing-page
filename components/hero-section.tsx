@@ -2,10 +2,11 @@
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Play } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export function HeroSection() {
   const heroRef = useRef<HTMLElement>(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,7 +28,9 @@ export function HeroSection() {
     return () => observer.disconnect()
   }, [])
 
-  const handleBuyNowClick = () => {
+  const handleBuyNowClick = async () => {
+    setIsLoading(true)
+
     // Track add_to_cart event for analytics (Google Analytics 4)
     if (typeof window !== "undefined" && (window as any).gtag) {
       ;(window as any).gtag("event", "add_to_cart", {
@@ -60,10 +63,30 @@ export function HeroSection() {
       })
     }
 
-    // Scroll to pricing section
-    const pricingSection = document.getElementById("pricing")
-    if (pricingSection) {
-      pricingSection.scrollIntoView({ behavior: "smooth", block: "center" })
+    try {
+      // Call Cloudflare Pages Function to create Stripe checkout session
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+
+      const { url, error } = await response.json()
+
+      if (error) {
+        console.error("Stripe checkout error:", error)
+        alert("Unable to process checkout. Please try again or contact support.")
+        setIsLoading(false)
+        return
+      }
+
+      // Redirect to Stripe Checkout
+      window.location.href = url
+    } catch (error) {
+      console.error("Checkout error:", error)
+      alert("Unable to process checkout. Please try again or contact support.")
+      setIsLoading(false)
     }
   }
 
@@ -107,12 +130,13 @@ export function HeroSection() {
                 className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300"
                 style={{ backgroundColor: "#1a3e6e" }}
                 onClick={handleBuyNowClick}
+                disabled={isLoading}
                 data-event="add_to_cart"
                 data-product="chief-architect-x17"
                 data-value="85.75"
               >
-                Buy Now - $85.75
-                <ArrowRight className="ml-2 h-5 w-5" />
+                {isLoading ? "Processing..." : "Buy Now - $85.75"}
+                {!isLoading && <ArrowRight className="ml-2 h-5 w-5" />}
               </Button>
 
               <Button
