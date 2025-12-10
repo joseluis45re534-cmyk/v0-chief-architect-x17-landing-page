@@ -8,11 +8,7 @@ export const stripePromise = loadStripe(
 // Product configuration
 export const STRIPE_PRODUCT = {
   name: "Chief Architect X17 - Full Version",
-  price: 85.75,
+  price: 85.14,
   currency: "USD",
-  // You need to create a Payment Link in your Stripe Dashboard
-  // Go to: https://dashboard.stripe.com/payment-links
-  // Create a new Payment Link for $85.75 USD
-  // Then paste the Payment Link URL here
-  paymentLink: "https://buy.stripe.com/test_XXXXXXXX", // Replace with actual Stripe Payment Link
+  paymentLink: "https://buy.stripe.com/6oUcN7bgrgxJd8F0ru5EY09",
 }

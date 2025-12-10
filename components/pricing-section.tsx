@@ -32,12 +32,12 @@ export function PricingSection() {
     if (typeof window !== "undefined" && (window as any).gtag) {
       ;(window as any).gtag("event", "add_to_cart", {
         currency: "USD",
-        value: 85.75,
+        value: 85.14,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Full Version",
-            price: 85.75,
+            price: 85.14,
             quantity: 1,
           },
         ],
@@ -46,12 +46,12 @@ export function PricingSection() {
       // Also track as begin_checkout
       ;(window as any).gtag("event", "begin_checkout", {
         currency: "USD",
-        value: 85.75,
+        value: 85.14,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Full Version",
-            price: 85.75,
+            price: 85.14,
             quantity: 1,
           },
         ],
@@ -59,7 +59,7 @@ export function PricingSection() {
     }
 
     // Redirect to Stripe Payment Link
-    window.location.href = "https://buy.stripe.com/00wcN7acnftF8Sp3DG5EY0b"
+    window.location.href = "https://buy.stripe.com/6oUcN7bgrgxJd8F0ru5EY09"
   }
 
   const features = [
@@ -97,7 +97,7 @@ export function PricingSection() {
               </h3>
               <div className="mb-2">
                 <span className="text-5xl font-bold" style={{ color: "#2d5a91" }}>
-                  $85.75
+                  $85.14
                 </span>
               </div>
               <p className="text-gray-600 text-lg">Complete access to all features</p>
@@ -118,9 +118,9 @@ export function PricingSection() {
               onClick={handleBuyNowClick}
               data-event="add_to_cart"
               data-product="chief-architect-x17"
-              data-value="85.75"
+              data-value="85.14"
             >
-              Buy Now - $85.75
+              Buy Now - $85.14
             </Button>
           </div>
         </div>

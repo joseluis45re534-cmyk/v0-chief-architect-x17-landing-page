@@ -12,7 +12,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Chief Architect X17 – The Most Advanced 3D Architectural Design Software",
   description:
-    "Discover the power of Chief Architect X17. AI-assisted drafting, faster rendering, smart building tools, and the industry's most intuitive 3D design workflow. Buy now for $85.75.",
+    "Discover the power of Chief Architect X17. AI-assisted drafting, faster rendering, smart building tools, and the industry's most intuitive 3D design workflow. Buy now for $85.14.",
   keywords: [
     "Chief Architect X17",
     "architectural design software",
