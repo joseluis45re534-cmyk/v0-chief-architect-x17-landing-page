@@ -3,9 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Play } from "lucide-react"
 import { useEffect, useRef } from "react"
+import { useRouter } from "next/navigation"
 
 export function HeroSection() {
   const heroRef = useRef<HTMLElement>(null)
+  const router = useRouter()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,7 +30,6 @@ export function HeroSection() {
   }, [])
 
   const handleBuyNowClick = () => {
-    // Track add_to_cart event for analytics (Google Analytics 4)
     if (typeof window !== "undefined" && (window as any).gtag) {
       ;(window as any).gtag("event", "add_to_cart", {
         currency: "USD",
@@ -42,8 +43,6 @@ export function HeroSection() {
           },
         ],
       })
-
-      // Also track as begin_checkout
       ;(window as any).gtag("event", "begin_checkout", {
         currency: "USD",
         value: 85.75,
@@ -58,11 +57,8 @@ export function HeroSection() {
       })
     }
 
-    // Redirect to Stripe Payment Link
-    // TEMPORARY: Using Stripe test checkout session for demo
-    // IMPORTANT: Replace this URL with your actual Stripe Payment Link from dashboard.stripe.com/payment-links
-    window.location.href =
-      "https://buy.stripe.com/test_XXXXXXXX?client_reference_id=chief-architect-x17&prefilled_email="
+    // Redirect to custom checkout page with Stripe Elements
+    router.push("/checkout")
   }
 
   return (

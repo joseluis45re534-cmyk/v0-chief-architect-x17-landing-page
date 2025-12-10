@@ -5,10 +5,12 @@ import { Menu, X, ChevronDown } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [policiesOpen, setPoliciesOpen] = useState(false)
+  const router = useRouter()
 
   const policyLinks = [
     { href: "/policies/privacy", label: "Privacy Policy" },
@@ -50,9 +52,8 @@ export function Header() {
       })
     }
 
-    // Redirect to Stripe Payment Link
-    window.location.href =
-      "https://buy.stripe.com/test_XXXXXXXX?client_reference_id=chief-architect-x17&prefilled_email="
+    // Redirect to custom checkout page
+    router.push("/checkout")
   }
 
   return (
