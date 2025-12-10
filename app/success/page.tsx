@@ -1,12 +1,12 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Check } from "lucide-react"
+import { Check, Download } from "lucide-react"
 import Link from "next/link"
 
 export const metadata = {
   title: "Purchase Successful - Chief Architect X17",
-  description: "Thank you for purchasing Chief Architect X17. Your download link has been sent to your email.",
+  description: "Thank you for purchasing Chief Architect X17. Download your software now.",
 }
 
 export default function SuccessPage() {
@@ -24,33 +24,55 @@ export default function SuccessPage() {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-bold mb-4" style={{ color: "#1a3e6e" }}>
-              Purchase Successful!
+              Thank You for Your Purchase!
             </h1>
 
             <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-              Thank you for purchasing Chief Architect X17. Your payment has been processed successfully.
+              Your payment has been processed successfully. You can now download Chief Architect X17.
             </p>
+
+            <div className="bg-gradient-to-br from-[#1a3e6e] to-[#2d5a91] rounded-xl p-8 mb-8 text-white">
+              <h2 className="text-2xl font-bold mb-4">Download Your Software</h2>
+              <p className="mb-6 text-white/90">
+                Click the button below to access your Chief Architect X17 installation files and license key.
+              </p>
+              <Button
+                size="lg"
+                className="bg-white hover:bg-gray-100 text-[#1a3e6e] font-bold text-lg px-8 py-6 h-auto"
+                asChild
+              >
+                <a
+                  href="https://drive.google.com/drive/folders/1BbcFg95pvaHQ3F1f-d4fy-VlSIyw0ddE?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3"
+                >
+                  <Download className="h-6 w-6" />
+                  Download Chief Architect X17
+                </a>
+              </Button>
+            </div>
 
             <div className="bg-[#f0f4f8] rounded-xl p-6 mb-8 text-left">
               <h2 className="text-2xl font-bold mb-4" style={{ color: "#1a3e6e" }}>
-                What's Next?
+                Installation Steps
               </h2>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <Check className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: "#2d5a91" }} />
-                  <span className="text-gray-700">Check your email for download instructions and license key</span>
+                  <span className="text-gray-700">Download the installation files from the link above</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: "#2d5a91" }} />
-                  <span className="text-gray-700">Download Chief Architect X17 from the link provided</span>
+                  <span className="text-gray-700">Run the installer and follow the on-screen instructions</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: "#2d5a91" }} />
-                  <span className="text-gray-700">Activate your software using your unique license key</span>
+                  <span className="text-gray-700">Use the provided license key to activate your software</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: "#2d5a91" }} />
-                  <span className="text-gray-700">Access our training resources and support documentation</span>
+                  <span className="text-gray-700">Access training videos and documentation to get started</span>
                 </li>
               </ul>
             </div>
