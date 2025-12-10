@@ -3,11 +3,9 @@
 import { Button } from "@/components/ui/button"
 import { Check } from "lucide-react"
 import { useEffect, useRef } from "react"
-import { useRouter } from "next/navigation"
 
 export function PricingSection() {
   const sectionRef = useRef<HTMLElement>(null)
-  const router = useRouter()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -30,6 +28,7 @@ export function PricingSection() {
   }, [])
 
   const handleBuyNowClick = () => {
+    // Track add_to_cart event for analytics (Google Analytics 4)
     if (typeof window !== "undefined" && (window as any).gtag) {
       ;(window as any).gtag("event", "add_to_cart", {
         currency: "USD",
@@ -43,6 +42,8 @@ export function PricingSection() {
           },
         ],
       })
+
+      // Also track as begin_checkout
       ;(window as any).gtag("event", "begin_checkout", {
         currency: "USD",
         value: 85.75,
@@ -57,8 +58,8 @@ export function PricingSection() {
       })
     }
 
-    // Redirect to custom checkout page
-    router.push("/checkout")
+    // Redirect to Stripe Payment Link
+    window.location.href = "https://buy.stripe.com/00wcN7acnftF8Sp3DG5EY0b"
   }
 
   const features = [
