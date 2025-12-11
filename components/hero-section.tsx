@@ -70,7 +70,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#1a3e6e]/5 via-transparent to-[#2d5a91]/5" />
 
         <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col-reverse lg:flex-row lg:grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-on-scroll">
               <div
                 className="inline-block px-4 py-2 rounded-full text-sm font-medium"
