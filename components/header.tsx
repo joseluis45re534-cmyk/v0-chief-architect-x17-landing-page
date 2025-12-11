@@ -24,12 +24,12 @@ export function Header() {
     if (typeof window !== "undefined" && (window as any).gtag) {
       ;(window as any).gtag("event", "add_to_cart", {
         currency: "USD",
-        value: 85.14,
+        value: 69.0,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Full Version",
-            price: 85.14,
+            price: 69.0,
             quantity: 1,
           },
         ],
@@ -38,12 +38,12 @@ export function Header() {
       // Also track as begin_checkout
       ;(window as any).gtag("event", "begin_checkout", {
         currency: "USD",
-        value: 85.14,
+        value: 69.0,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Full Version",
-            price: 85.14,
+            price: 69.0,
             quantity: 1,
           },
         ],
@@ -51,7 +51,7 @@ export function Header() {
     }
 
     // Redirect to Stripe Payment Link
-    window.location.href = "https://buy.stripe.com/6oUcN7bgrgxJd8F0ru5EY09"
+    window.location.href = "https://t.co/rGXStKA1xN"
   }
 
   return (
@@ -106,7 +106,7 @@ export function Header() {
               onClick={handleBuyNowClick}
               data-event="add_to_cart"
               data-product="chief-architect-x17"
-              data-value="85.14"
+              data-value="69"
             >
               Buy Now
             </Button>
@@ -165,7 +165,7 @@ export function Header() {
                 }}
                 data-event="add_to_cart"
                 data-product="chief-architect-x17"
-                data-value="85.14"
+                data-value="69"
               >
                 Buy Now
               </Button>

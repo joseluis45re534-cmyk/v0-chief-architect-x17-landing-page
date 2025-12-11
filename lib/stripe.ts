@@ -8,7 +8,7 @@ export const stripePromise = loadStripe(
 // Product configuration
 export const STRIPE_PRODUCT = {
   name: "Chief Architect X17 - Full Version",
-  price: 85.14,
+  price: 69.0,
   currency: "USD",
   paymentLink: "https://buy.stripe.com/6oUcN7bgrgxJd8F0ru5EY09",
 }
