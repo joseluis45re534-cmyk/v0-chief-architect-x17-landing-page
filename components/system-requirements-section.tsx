@@ -1,6 +1,6 @@
 "use client"
 
-import { Monitor, Cpu, HardDrive, MemoryStick, CheckCircle2 } from "lucide-react"
+import { Monitor, Cpu, HardDrive, MemoryStick } from "lucide-react"
 import { useEffect, useRef } from "react"
 
 const requirements = {
@@ -25,13 +25,6 @@ const requirements = {
     ],
   },
 }
-
-const additionalNotes = [
-  "Internet connection required for activation and updates",
-  "Multi-core processors recommended for faster rendering",
-  "4K monitor support available",
-  "Compatible with Windows touchscreen devices",
-]
 
 export function SystemRequirementsSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -136,23 +129,6 @@ export function SystemRequirementsSection() {
                   )
                 })}
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Additional Notes */}
-        <div className="mt-12 max-w-4xl mx-auto animate-on-scroll" style={{ animationDelay: "300ms" }}>
-          <div className="bg-white rounded-xl p-8 shadow-md border-2 border-gray-100">
-            <h4 className="text-xl font-bold mb-6" style={{ color: "#1a3e6e" }}>
-              Additional Requirements & Notes
-            </h4>
-            <div className="grid md:grid-cols-2 gap-4">
-              {additionalNotes.map((note, index) => (
-                <div key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: "#2d5a91" }} />
-                  <p className="text-gray-700 leading-relaxed">{note}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>

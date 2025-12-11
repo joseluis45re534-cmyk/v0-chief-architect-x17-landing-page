@@ -7,6 +7,7 @@ import { FeaturesSection } from "@/components/features-section"
 import { ComparisonSection } from "@/components/comparison-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { PricingSection } from "@/components/pricing-section"
+import { GuaranteeSection } from "@/components/guarantee-section"
 import { SystemRequirementsSection } from "@/components/system-requirements-section"
 import { Footer } from "@/components/footer"
 
@@ -52,6 +53,7 @@ export default function Page() {
       <TestimonialsSection />
       <SystemRequirementsSection />
       <PricingSection />
+      <GuaranteeSection />
       <Footer />
 
       {/* Schema.org Product structured data */}
