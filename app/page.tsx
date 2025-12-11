@@ -7,6 +7,7 @@ import { FeaturesSection } from "@/components/features-section"
 import { ComparisonSection } from "@/components/comparison-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { PricingSection } from "@/components/pricing-section"
+import { SystemRequirementsSection } from "@/components/system-requirements-section"
 import { Footer } from "@/components/footer"
 
 export const metadata = {
@@ -49,6 +50,7 @@ export default function Page() {
       <FeaturesSection />
       <ComparisonSection />
       <TestimonialsSection />
+      <SystemRequirementsSection />
       <PricingSection />
       <Footer />
 

@@ -66,14 +66,10 @@ export function PricingSection() {
     "Full 3D modeling capabilities",
     "AI-assisted drafting",
     "Advanced photorealistic rendering",
-    "Cloud project sync",
     "Construction documentation",
     "Material lists & estimates",
     "BIM integration tools",
     "Advanced CAD tools",
-    "Real-time collaboration",
-    "Priority phone & email support",
-    "Free updates and support",
     "30-day money-back guarantee",
   ]
 
@@ -91,7 +87,14 @@ export function PricingSection() {
 
         <div className="max-w-xl mx-auto">
           <div className="animate-on-scroll relative rounded-2xl p-10 border-2 shadow-2xl bg-white border-[#2d5a91]">
-            <div className="text-center mb-8">
+            <div
+              className="absolute -top-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full text-white font-bold text-sm shadow-lg"
+              style={{ backgroundColor: "#2d5a91" }}
+            >
+              ONE TIME PAYMENT - LIFETIME ACTIVATION
+            </div>
+
+            <div className="text-center mb-8 mt-4">
               <h3 className="text-3xl font-bold mb-4" style={{ color: "#1a3e6e" }}>
                 Full Version
               </h3>
