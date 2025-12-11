@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Check } from "lucide-react"
+import { Check, ShieldCheck, Crown } from "lucide-react"
 import { useEffect, useRef } from "react"
 
 export function PricingSection() {
@@ -104,6 +104,30 @@ export function PricingSection() {
                 </span>
               </div>
               <p className="text-gray-600 text-lg">Complete access to all features</p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div
+                className="rounded-xl p-5 text-center shadow-lg border-2 transform hover:scale-105 transition-transform duration-300"
+                style={{
+                  background: "linear-gradient(135deg, #1a3e6e 0%, #2d5a91 100%)",
+                  borderColor: "#2d5a91",
+                }}
+              >
+                <ShieldCheck className="h-10 w-10 mx-auto mb-3 text-white" />
+                <p className="text-white font-bold text-lg">One-time purchase</p>
+              </div>
+
+              <div
+                className="rounded-xl p-5 text-center shadow-lg border-2 transform hover:scale-105 transition-transform duration-300"
+                style={{
+                  background: "linear-gradient(135deg, #1a3e6e 0%, #2d5a91 100%)",
+                  borderColor: "#2d5a91",
+                }}
+              >
+                <Crown className="h-10 w-10 mx-auto mb-3 text-white" />
+                <p className="text-white font-bold text-lg">Lifetime access</p>
+              </div>
             </div>
 
             <ul className="space-y-4 mb-8">

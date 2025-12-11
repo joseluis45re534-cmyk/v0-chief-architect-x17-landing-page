@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Play } from "lucide-react"
+import { ArrowRight, Play, Shield, Crown } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { VideoModal } from "@/components/video-modal"
 
@@ -119,26 +119,26 @@ export function HeroSection() {
                 </Button>
               </div>
 
-              <div className="flex items-center gap-6 pt-4 text-sm text-gray-600">
-                <div className="flex items-center gap-2">
-                  <svg className="h-5 w-5" style={{ color: "#2d5a91" }} fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span>One-time purchase</span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div
+                  className="flex items-center gap-3 px-5 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: "linear-gradient(135deg, #1a3e6e 0%, #2d5a91 100%)",
+                    color: "white",
+                  }}
+                >
+                  <Shield className="h-6 w-6 flex-shrink-0" />
+                  <span className="font-semibold text-base">One-time purchase</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg className="h-5 w-5" style={{ color: "#2d5a91" }} fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span>Lifetime access</span>
+                <div
+                  className="flex items-center gap-3 px-5 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: "linear-gradient(135deg, #1a3e6e 0%, #2d5a91 100%)",
+                    color: "white",
+                  }}
+                >
+                  <Crown className="h-6 w-6 flex-shrink-0" />
+                  <span className="font-semibold text-base">Lifetime access</span>
                 </div>
               </div>
             </div>
