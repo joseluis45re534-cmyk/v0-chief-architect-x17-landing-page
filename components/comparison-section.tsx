@@ -55,11 +55,9 @@ export function ComparisonSection() {
                 </thead>
                 <tbody>
                   {[
-                    { feature: "AI-Assisted Drafting", x17: true, x16: false },
                     { feature: "3D Rendering Speed", x17: "3x faster", x16: "Standard" },
                     { feature: "Auto-Materials Detection", x17: true, x16: false },
                     { feature: "Smart Walls & Roofs", x17: true, x16: "Basic" },
-                    { feature: "Cloud Project Sync", x17: true, x16: false },
                     { feature: "CAD Enhancement Tools", x17: "Advanced", x16: "Standard" },
                     { feature: "Real-time Collaboration", x17: true, x16: false },
                   ].map((row, index) => (
@@ -116,7 +114,6 @@ export function ComparisonSection() {
                 </thead>
                 <tbody>
                   {[
-                    { feature: "AI-Powered Design", ca: true, sketchup: false, revit: false, hd: false },
                     { feature: "Automatic Construction Docs", ca: true, sketchup: false, revit: true, hd: true },
                     {
                       feature: "Advanced 3D Rendering",

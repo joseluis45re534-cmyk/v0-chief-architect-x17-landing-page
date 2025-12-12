@@ -14,7 +14,7 @@ import { Footer } from "@/components/footer"
 export const metadata = {
   title: "Chief Architect X17 – The Most Advanced 3D Architectural Design Software",
   description:
-    "Discover the power of Chief Architect X17. AI-assisted drafting, faster rendering, smart building tools, and the industry's most intuitive 3D design workflow. Buy now for $69.",
+    "Discover the power of Chief Architect X17. Faster rendering, smart building tools, and the industry's most intuitive 3D design workflow. Buy now for $69.",
   keywords: [
     "Chief Architect X17",
     "architectural design software",
@@ -28,7 +28,7 @@ export const metadata = {
   openGraph: {
     title: "Chief Architect X17 – The Most Advanced 3D Architectural Design Software",
     description:
-      "Discover the power of Chief Architect X17. AI-assisted drafting, faster rendering, smart building tools, and the industry's most intuitive 3D design workflow.",
+      "Discover the power of Chief Architect X17. Faster rendering, smart building tools, and the industry's most intuitive 3D design workflow.",
     type: "website",
     images: ["/chief-architect-x17-software-interface.jpg"],
   },
@@ -36,7 +36,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Chief Architect X17 – The Most Advanced 3D Architectural Design Software",
     description:
-      "Discover the power of Chief Architect X17. AI-assisted drafting, faster rendering, smart building tools, and the industry's most intuitive 3D design workflow.",
+      "Discover the power of Chief Architect X17. Faster rendering, smart building tools, and the industry's most intuitive 3D design workflow.",
   },
 }
 

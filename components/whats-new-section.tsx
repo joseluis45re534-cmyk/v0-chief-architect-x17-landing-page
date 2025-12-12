@@ -1,14 +1,9 @@
 "use client"
 
-import { Sparkles, Zap, Wand2, Home, Wrench, Cloud } from "lucide-react"
+import { Zap, Wand2, Home, Wrench } from "lucide-react"
 import { useEffect, useRef } from "react"
 
 const features = [
-  {
-    icon: Sparkles,
-    title: "AI-Assisted Drafting",
-    description: "Intelligent suggestions and automated design recommendations powered by advanced AI algorithms.",
-  },
   {
     icon: Zap,
     title: "Faster 3D Rendering Engine",
@@ -28,11 +23,6 @@ const features = [
     icon: Wrench,
     title: "CAD Enhancement Tools",
     description: "Professional-grade CAD tools with precision drafting and advanced annotation features.",
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Project Sync",
-    description: "Seamlessly sync projects across devices and collaborate with team members in real-time.",
   },
 ]
 
@@ -78,7 +68,7 @@ export function WhatsNewSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
           {features.map((feature, index) => {
             const Icon = feature.icon
             return (

@@ -64,7 +64,6 @@ export function PricingSection() {
 
   const features = [
     "Full 3D modeling capabilities",
-    "AI-assisted drafting",
     "Advanced photorealistic rendering",
     "Construction documentation",
     "Material lists & estimates",
