@@ -150,13 +150,6 @@ export function HeroSection() {
                   alt="Chief Architect X17 architectural design software interface with 3D modeling"
                   className="w-full h-auto"
                 />
-
-                <div
-                  className="absolute top-4 right-4 px-4 py-2 rounded-lg backdrop-blur-sm"
-                  style={{ backgroundColor: "rgba(26, 62, 110, 0.9)", color: "white" }}
-                >
-                  <div className="text-sm font-semibold">AI-Powered</div>
-                </div>
               </div>
 
               <div

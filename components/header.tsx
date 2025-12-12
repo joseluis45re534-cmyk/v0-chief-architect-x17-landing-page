@@ -61,7 +61,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
             <Image
-              src="/images/logo-20rec-20.webp"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cropped-designed-with-chief-architect-black-0dJ3TiUUGfX1oIOpHhHtd1w9WImXIg.png"
               alt="Chief Architect X17 Logo"
               width={200}
               height={60}
