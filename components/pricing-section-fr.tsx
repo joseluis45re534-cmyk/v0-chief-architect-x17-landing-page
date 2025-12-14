@@ -55,7 +55,7 @@ export function PricingSectionFr() {
       })
     }
 
-    window.location.href = "https://t.co/rGXStKA1xN"
+    window.location.href = "https://whop.com/checkout/plan_QY2DWc4Y8VEcK"
   }
 
   const features = [

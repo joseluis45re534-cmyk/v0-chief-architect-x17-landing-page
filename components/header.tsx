@@ -50,8 +50,7 @@ export function Header() {
       })
     }
 
-    // Redirect to Stripe Payment Link
-    window.location.href = "https://t.co/rGXStKA1xN"
+    window.location.href = "https://whop.com/checkout/plan_qLhu17IHFgcUq"
   }
 
   return (
@@ -61,7 +60,7 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/cropped-designed-with-chief-architect-black-0dJ3TiUUGfX1oIOpHhHtd1w9WImXIg.png"
+              src="/images/cropped-designed-with-chief-architect-black.png"
               alt="Chief Architect X17 Logo"
               width={200}
               height={60}

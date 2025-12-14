@@ -56,8 +56,7 @@ export function GuaranteeSection() {
       })
     }
 
-    // Redirect to payment link
-    window.location.href = "https://t.co/rGXStKA1xN"
+    window.location.href = "https://whop.com/checkout/plan_qLhu17IHFgcUq"
   }
 
   const features = [
