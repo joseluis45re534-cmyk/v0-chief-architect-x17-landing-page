@@ -1,0 +1,178 @@
+"use client"
+
+import { Button } from "@/components/ui/button"
+import { Menu, X, ChevronDown } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { useState } from "react"
+
+export function HeaderFr() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [policiesOpen, setPoliciesOpen] = useState(false)
+
+  const policyLinks = [
+    { href: "/policies/privacy", label: "Politique de confidentialité" },
+    { href: "/policies/terms", label: "Conditions d'utilisation" },
+    { href: "/policies/refund", label: "Politique de remboursement" },
+    { href: "/policies/cookies", label: "Politique sur les cookies" },
+    { href: "/policies/disclaimer", label: "Clause de non-responsabilité" },
+    { href: "/policies/payment", label: "Paiement et sécurité" },
+  ]
+
+  const handleBuyNowClick = () => {
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      ;(window as any).gtag("event", "add_to_cart", {
+        currency: "CAD",
+        value: 95.0,
+        items: [
+          {
+            item_id: "chief-architect-x17",
+            item_name: "Chief Architect X17 Version complète",
+            price: 95.0,
+            quantity: 1,
+          },
+        ],
+      })
+      ;(window as any).gtag("event", "begin_checkout", {
+        currency: "CAD",
+        value: 95.0,
+        items: [
+          {
+            item_id: "chief-architect-x17",
+            item_name: "Chief Architect X17 Version complète",
+            price: 95.0,
+            quantity: 1,
+          },
+        ],
+      })
+    }
+
+    window.location.href = "https://t.co/rGXStKA1xN"
+  }
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        <div className="flex h-16 md:h-20 items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
+            <Image
+              src="/images/cropped-designed-with-chief-architect-black.png"
+              alt="Logo Chief Architect X17"
+              width={200}
+              height={60}
+              className="h-10 md:h-12 w-auto"
+              priority
+            />
+          </Link>
+
+          <nav className="hidden md:flex items-center gap-8">
+            <Link href="/contact" className="text-gray-700 hover:text-[#1a3e6e] font-medium transition-colors">
+              Nous contacter
+            </Link>
+            <div className="relative group">
+              <button
+                className="text-gray-700 hover:text-[#1a3e6e] font-medium transition-colors flex items-center gap-1"
+                onMouseEnter={() => setPoliciesOpen(true)}
+                onMouseLeave={() => setPoliciesOpen(false)}
+              >
+                Politiques
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              <div
+                className="absolute top-full left-0 mt-2 w-56 bg-white border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+                onMouseEnter={() => setPoliciesOpen(true)}
+                onMouseLeave={() => setPoliciesOpen(false)}
+              >
+                {policyLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="block px-4 py-3 text-sm text-gray-700 hover:bg-[#f0f4f8] hover:text-[#1a3e6e] transition-colors first:rounded-t-lg last:rounded-b-lg"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <Button
+              size="lg"
+              className="font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              style={{ backgroundColor: "#1a3e6e" }}
+              onClick={handleBuyNowClick}
+              data-event="add_to_cart"
+              data-product="chief-architect-x17"
+              data-value="95"
+            >
+              Acheter maintenant
+            </Button>
+          </nav>
+
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Activer le menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" style={{ color: "#1a3e6e" }} />
+            ) : (
+              <Menu className="h-6 w-6" style={{ color: "#1a3e6e" }} />
+            )}
+          </button>
+        </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden py-4 border-t">
+            <nav className="flex flex-col gap-4">
+              <Link
+                href="/contact"
+                className="text-gray-700 hover:text-[#1a3e6e] font-medium py-2 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Nous contacter
+              </Link>
+              <div className="flex flex-col">
+                <button
+                  onClick={() => setPoliciesOpen(!policiesOpen)}
+                  className="text-gray-700 hover:text-[#1a3e6e] font-medium py-2 transition-colors flex items-center justify-between"
+                >
+                  Politiques
+                  <ChevronDown className={`h-4 w-4 transition-transform ${policiesOpen ? "rotate-180" : ""}`} />
+                </button>
+                {policiesOpen && (
+                  <div className="flex flex-col pl-4 mt-2 gap-2">
+                    {policyLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="text-sm text-gray-600 hover:text-[#1a3e6e] py-2 transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <Button
+                size="lg"
+                className="font-semibold text-white w-full"
+                style={{ backgroundColor: "#1a3e6e" }}
+                onClick={() => {
+                  handleBuyNowClick()
+                  setMobileMenuOpen(false)
+                }}
+                data-event="add_to_cart"
+                data-product="chief-architect-x17"
+                data-value="95"
+              >
+                Acheter maintenant
+              </Button>
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
+  )
+}
