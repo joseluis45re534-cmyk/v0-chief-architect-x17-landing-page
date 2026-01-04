@@ -106,7 +106,7 @@ export default function AboutPage() {
               Experience the power of Chief Architect X17 and transform your design workflow today.
             </p>
             <a
-              href="https://whop.com/checkout/plan_qLhu17IHFgcUq"
+              href=""
               className="inline-block bg-white text-[#1a3e6e] px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors"
             >
               Get Started - $69
