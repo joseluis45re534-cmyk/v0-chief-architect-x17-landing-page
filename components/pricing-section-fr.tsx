@@ -55,7 +55,7 @@ export function PricingSectionFr() {
       })
     }
 
-    window.location.href = "https://whop.com/checkout/plan_QY2DWc4Y8VEcK"
+    window.location.href = "https://siroxdev-llcs.myshopify.com/cart/44037766316143:1"
   }
 
   const features = [
