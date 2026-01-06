@@ -41,11 +41,53 @@ export const metadata = {
 }
 
 export default function Page() {
+    const dePricing = {
+        currencySymbol: "€",
+        currencyCode: "EUR",
+        price: 59,
+        paymentLink: "https://siroxdev-llcs.myshopify.com/cart/44037766316143:1",
+    }
+
+    const deContent = {
+        badge: "Neue Veröffentlichung: Chief Architect X17",
+        title: (
+            <>
+                Intelligenter entwerfen.
+                <br />
+                Schneller bauen.
+            </>
+        ),
+        description: "Chief Architect X17 ist die schnellste, intelligenteste und leistungsfähigste Version, die je erstellt wurde – entwickelt für Architekten, Innenarchitekten und Bauunternehmer, die unübertroffene Effizienz wünschen.",
+        buyButton: "Jetzt kaufen",
+        watchButton: "Was ist neu in X17",
+        oneTimePurchase: "Einmaliger Kauf",
+        lifetimeAccess: "Lebenslanger Zugriff",
+    }
+
+    const dePricingContent = {
+        heading: "Holen Sie sich Chief Architect X17 noch heute",
+        subheading: "Einmaliger Kauf mit lebenslangem Zugriff. Beinhaltet alle Premium-Funktionen und kostenlose Updates.",
+        badge: "EINMALIGE ZAHLUNG - LEBENSLANGE AKTIVIERUNG",
+        versionName: "Vollversion",
+        accessFeature: "Vollständiger Zugriff auf alle Funktionen",
+        oneTimePurchase: "Einmaliger Kauf",
+        lifetimeAccess: "Lebenslanger Zugriff",
+        features: [
+            "Umfassende 3D-Modellierungsfunktionen",
+            "Fortschrittliches fotorealistisches Rendering",
+            "Baudokumentation",
+            "Materiallisten & Kostenschätzungen",
+            "BIM-Integrationswerkzeuge",
+            "Erweiterte CAD-Werkzeuge",
+            "30 Tage Geld-zurück-Garantie",
+        ],
+        buyButton: "Jetzt kaufen",
+    }
+
     return (
         <main className="min-h-screen">
-            {/* TODO: Translating content requires updating components or passing props. Currently using English components. */}
             <Header />
-            <HeroSection />
+            <HeroSection content={deContent} pricing={dePricing} />
             <TrustedBySection />
             <WhatsNewSection />
             <VideoSection />
@@ -53,7 +95,7 @@ export default function Page() {
             <ComparisonSection />
             <TestimonialsSection />
             <SystemRequirementsSection />
-            <PricingSection />
+            <PricingSection content={dePricingContent} pricing={dePricing} />
             <GuaranteeSection />
             <Footer />
 

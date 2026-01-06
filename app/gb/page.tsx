@@ -41,10 +41,53 @@ export const metadata = {
 }
 
 export default function Page() {
+    const gbPricing = {
+        currencySymbol: "£",
+        currencyCode: "GBP",
+        price: 59,
+        paymentLink: "https://siroxdev-llcs.myshopify.com/cart/44037766316143:1", // Note: Verify if a different link is needed for GBP
+    }
+
+    const gbContent = {
+        badge: "New Release: Chief Architect X17",
+        title: (
+            <>
+                Design Smarter.
+                <br />
+                Build Faster.
+            </>
+        ),
+        description: "Chief Architect X17 is the fastest, smartest, and most intelligent version ever created — built for architects, interior designers, and builders who want unmatched efficiency.",
+        buyButton: "Buy Now",
+        watchButton: "See What's New in X17",
+        oneTimePurchase: "One-time purchase",
+        lifetimeAccess: "Lifetime access",
+    }
+
+    const gbPricingContent = {
+        heading: "Get Chief Architect X17 Today",
+        subheading: "One-time purchase with lifetime access. Includes all premium features and free updates.",
+        badge: "ONE TIME PAYMENT - LIFETIME ACTIVATION",
+        versionName: "Full Version",
+        accessFeature: "Complete access to all features",
+        oneTimePurchase: "One-time purchase",
+        lifetimeAccess: "Lifetime access",
+        features: [
+            "Full 3D modeling capabilities",
+            "Advanced photorealistic rendering",
+            "Construction documentation",
+            "Material lists & estimates",
+            "BIM integration tools",
+            "Advanced CAD tools",
+            "30-day money-back guarantee",
+        ],
+        buyButton: "Buy Now",
+    }
+
     return (
         <main className="min-h-screen">
             <Header />
-            <HeroSection />
+            <HeroSection content={gbContent} pricing={gbPricing} />
             <TrustedBySection />
             <WhatsNewSection />
             <VideoSection />
@@ -52,7 +95,7 @@ export default function Page() {
             <ComparisonSection />
             <TestimonialsSection />
             <SystemRequirementsSection />
-            <PricingSection />
+            <PricingSection content={gbPricingContent} pricing={gbPricing} />
             <GuaranteeSection />
             <Footer />
 
@@ -69,7 +112,7 @@ export default function Page() {
                         offers: {
                             "@type": "AggregateOffer",
                             priceCurrency: "GBP",
-                            lowPrice: "59", // Approximate/Placeholder
+                            lowPrice: "59",
                         },
                         aggregateRating: {
                             "@type": "AggregateRating",

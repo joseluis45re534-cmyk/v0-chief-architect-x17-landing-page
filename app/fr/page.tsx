@@ -41,11 +41,53 @@ export const metadata = {
 }
 
 export default function Page() {
+    const frPricing = {
+        currencySymbol: "€",
+        currencyCode: "EUR",
+        price: 59,
+        paymentLink: "https://siroxdev-llcs.myshopify.com/cart/44037766316143:1",
+    }
+
+    const frContent = {
+        badge: "Nouvelle version : Chief Architect X17",
+        title: (
+            <>
+                Concevez plus intelligemment.
+                <br />
+                Construisez plus vite.
+            </>
+        ),
+        description: "Chief Architect X17 est la version la plus rapide et la plus intelligente jamais créée — conçue pour les architectes, les designers d'intérieur et les constructeurs qui exigent une efficacité inégalée.",
+        buyButton: "Acheter maintenant",
+        watchButton: "Voir les nouveautés X17",
+        oneTimePurchase: "Achat unique",
+        lifetimeAccess: "Accès à vie",
+    }
+
+    const frPricingContent = {
+        heading: "Obtenez Chief Architect X17 aujourd'hui",
+        subheading: "Achat unique avec accès à vie. Inclut toutes les fonctionnalités premium et les mises à jour gratuites.",
+        badge: "PAIEMENT UNIQUE - ACTIVATION À VIE",
+        versionName: "Version Complète",
+        accessFeature: "Accès complet à toutes les fonctionnalités",
+        oneTimePurchase: "Achat unique",
+        lifetimeAccess: "Accès à vie",
+        features: [
+            "Capacités de modélisation 3D complètes",
+            "Rendu photoréaliste avancé",
+            "Documentation de construction",
+            "Listes de matériaux et estimations",
+            "Outils d'intégration BIM",
+            "Outils CAO avancés",
+            "Garantie satisfait ou remboursé de 30 jours",
+        ],
+        buyButton: "Acheter maintenant",
+    }
+
     return (
         <main className="min-h-screen">
-            {/* TODO: Translating content requires updating components or passing props. Currently using English components. */}
             <Header />
-            <HeroSection />
+            <HeroSection content={frContent} pricing={frPricing} />
             <TrustedBySection />
             <WhatsNewSection />
             <VideoSection />
@@ -53,7 +95,7 @@ export default function Page() {
             <ComparisonSection />
             <TestimonialsSection />
             <SystemRequirementsSection />
-            <PricingSection />
+            <PricingSection content={frPricingContent} pricing={frPricing} />
             <GuaranteeSection />
             <Footer />
 

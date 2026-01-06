@@ -5,7 +5,48 @@ import { ArrowRight, Play, Shield, Crown } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { VideoModal } from "@/components/video-modal"
 
-export function HeroSection() {
+interface HeroSectionProps {
+  content?: {
+    badge?: string
+    title?: React.ReactNode
+    description?: string
+    buyButton?: string
+    watchButton?: string
+    oneTimePurchase?: string
+    lifetimeAccess?: string
+  }
+  pricing?: {
+    currencySymbol: string
+    currencyCode: string
+    price: number
+    paymentLink?: string
+  }
+}
+
+export function HeroSection({
+  content = {
+    badge: "New Release: Chief Architect X17",
+    title: (
+      <>
+        Design Smarter.
+        <br />
+        Build Faster.
+      </>
+    ),
+    description:
+      "Chief Architect X17 is the fastest, smartest, and most intelligent version ever created — built for architects, interior designers, and builders who want unmatched efficiency.",
+    buyButton: "Buy Now",
+    watchButton: "See What's New in X17",
+    oneTimePurchase: "One-time purchase",
+    lifetimeAccess: "Lifetime access",
+  },
+  pricing = {
+    currencySymbol: "$",
+    currencyCode: "USD",
+    price: 69,
+    paymentLink: "https://siroxdev-llcs.myshopify.com/cart/44037766316143:1",
+  },
+}: HeroSectionProps) {
   const heroRef = useRef<HTMLElement>(null)
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 
@@ -31,33 +72,35 @@ export function HeroSection() {
 
   const handleBuyNowClick = () => {
     if (typeof window !== "undefined" && (window as any).gtag) {
-      ;(window as any).gtag("event", "add_to_cart", {
-        currency: "USD",
-        value: 69.0,
+      ; (window as any).gtag("event", "add_to_cart", {
+        currency: pricing.currencyCode,
+        value: pricing.price,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Full Version",
-            price: 69.0,
+            price: pricing.price,
             quantity: 1,
           },
         ],
       })
-      ;(window as any).gtag("event", "begin_checkout", {
-        currency: "USD",
-        value: 69.0,
-        items: [
-          {
-            item_id: "chief-architect-x17",
-            item_name: "Chief Architect X17 Full Version",
-            price: 69.0,
-            quantity: 1,
-          },
-        ],
-      })
+        ; (window as any).gtag("event", "begin_checkout", {
+          currency: pricing.currencyCode,
+          value: pricing.price,
+          items: [
+            {
+              item_id: "chief-architect-x17",
+              item_name: "Chief Architect X17 Full Version",
+              price: pricing.price,
+              quantity: 1,
+            },
+          ],
+        })
     }
 
-    window.location.href = "https://siroxdev-llcs.myshopify.com/cart/44037766316143:1"
+    if (pricing.paymentLink) {
+      window.location.href = pricing.paymentLink
+    }
   }
 
   return (
@@ -76,22 +119,17 @@ export function HeroSection() {
                 className="inline-block px-4 py-2 rounded-full text-sm font-medium"
                 style={{ backgroundColor: "#2d5a91", color: "white" }}
               >
-                New Release: Chief Architect X17
+                {content.badge}
               </div>
 
               <h1
                 className="text-5xl md:text-6xl lg:text-7xl font-bold text-balance leading-tight"
                 style={{ color: "#1a3e6e" }}
               >
-                Design Smarter.
-                <br />
-                Build Faster.
+                {content.title}
               </h1>
 
-              <p className="text-xl md:text-2xl text-gray-700 text-pretty leading-relaxed">
-                Chief Architect X17 is the fastest, smartest, and most intelligent version ever created — built for
-                architects, interior designers, and builders who want unmatched efficiency.
-              </p>
+              <p className="text-xl md:text-2xl text-gray-700 text-pretty leading-relaxed">{content.description}</p>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -101,9 +139,10 @@ export function HeroSection() {
                   onClick={handleBuyNowClick}
                   data-event="add_to_cart"
                   data-product="chief-architect-x17"
-                  data-value="69"
+                  data-value={pricing.price}
                 >
-                  Buy Now - $69
+                  {content.buyButton} - {pricing.currencySymbol}
+                  {pricing.price}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
 
@@ -115,7 +154,7 @@ export function HeroSection() {
                   onClick={() => setIsVideoModalOpen(true)}
                 >
                   <Play className="mr-2 h-5 w-5" />
-                  See What's New in X17
+                  {content.watchButton}
                 </Button>
               </div>
 
@@ -128,7 +167,7 @@ export function HeroSection() {
                   }}
                 >
                   <Shield className="h-6 w-6 flex-shrink-0" />
-                  <span className="font-semibold text-base">One-time purchase</span>
+                  <span className="font-semibold text-base">{content.oneTimePurchase}</span>
                 </div>
                 <div
                   className="flex items-center gap-3 px-5 py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
@@ -138,7 +177,7 @@ export function HeroSection() {
                   }}
                 >
                   <Crown className="h-6 w-6 flex-shrink-0" />
-                  <span className="font-semibold text-base">Lifetime access</span>
+                  <span className="font-semibold text-base">{content.lifetimeAccess}</span>
                 </div>
               </div>
             </div>
