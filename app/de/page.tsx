@@ -1,0 +1,87 @@
+import { Header } from "@/components/header"
+import { HeroSection } from "@/components/hero-section"
+import { TrustedBySection } from "@/components/trusted-by-section"
+import { WhatsNewSection } from "@/components/whats-new-section"
+import { VideoSection } from "@/components/video-section"
+import { FeaturesSection } from "@/components/features-section"
+import { ComparisonSection } from "@/components/comparison-section"
+import { TestimonialsSection } from "@/components/testimonials-section"
+import { PricingSection } from "@/components/pricing-section"
+import { GuaranteeSection } from "@/components/guarantee-section"
+import { SystemRequirementsSection } from "@/components/system-requirements-section"
+import { Footer } from "@/components/footer"
+
+export const metadata = {
+    title: "Chief Architect X17 (DE) – Die fortschrittlichste 3D-Architekturdesign-Software",
+    description:
+        "Entdecken Sie die Leistungsfähigkeit von Chief Architect X17. Schnelleres Rendering, intelligente Bauwerkzeuge und der intuitivste 3D-Design-Workflow der Branche.",
+    keywords: [
+        "Chief Architect X17",
+        "Architekturdesign-Software",
+        "3D-Hausdesign-Software",
+        "BIM-Zeichenwerkzeuge",
+        "Innenarchitektur-Software",
+        "CAD-Werkzeuge",
+        "Grundriss-Software",
+        "3D-Rendering für Architekten",
+    ],
+    openGraph: {
+        title: "Chief Architect X17 (DE) – Die fortschrittlichste 3D-Architekturdesign-Software",
+        description:
+            "Entdecken Sie die Leistungsfähigkeit von Chief Architect X17. Schnelleres Rendering, intelligente Bauwerkzeuge und der intuitivste 3D-Design-Workflow der Branche.",
+        type: "website",
+        images: ["/chief-architect-x17-software-interface.jpg"],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Chief Architect X17 (DE) – Die fortschrittlichste 3D-Architekturdesign-Software",
+        description:
+            "Entdecken Sie die Leistungsfähigkeit von Chief Architect X17. Schnelleres Rendering, intelligente Bauwerkzeuge und der intuitivste 3D-Design-Workflow der Branche.",
+    },
+}
+
+export default function Page() {
+    return (
+        <main className="min-h-screen">
+            {/* TODO: Translating content requires updating components or passing props. Currently using English components. */}
+            <Header />
+            <HeroSection />
+            <TrustedBySection />
+            <WhatsNewSection />
+            <VideoSection />
+            <FeaturesSection />
+            <ComparisonSection />
+            <TestimonialsSection />
+            <SystemRequirementsSection />
+            <PricingSection />
+            <GuaranteeSection />
+            <Footer />
+
+            {/* Schema.org Product structured data */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "SoftwareApplication",
+                        name: "Chief Architect X17",
+                        applicationCategory: "DesignApplication",
+                        operatingSystem: "Windows, macOS",
+                        offers: {
+                            "@type": "AggregateOffer",
+                            priceCurrency: "EUR",
+                            lowPrice: "59",
+                        },
+                        aggregateRating: {
+                            "@type": "AggregateRating",
+                            ratingValue: "4.8",
+                            ratingCount: "2847",
+                        },
+                        description:
+                            "Chief Architect X17 ist die schnellste, intelligenteste und leistungsfähigste Version, die je erstellt wurde – entwickelt für Architekten, Innenarchitekten und Bauunternehmer, die unübertroffene Effizienz wünschen.",
+                    }),
+                }}
+            />
+        </main>
+    )
+}
