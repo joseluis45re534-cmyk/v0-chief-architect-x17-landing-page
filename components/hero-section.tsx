@@ -44,7 +44,7 @@ export function HeroSection({
     currencySymbol: "$",
     currencyCode: "USD",
     price: 69,
-    paymentLink: "https://siroxdev-llcs.myshopify.com/cart/44037766316143:1",
+    paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
   },
 }: HeroSectionProps) {
   const heroRef = useRef<HTMLElement>(null)

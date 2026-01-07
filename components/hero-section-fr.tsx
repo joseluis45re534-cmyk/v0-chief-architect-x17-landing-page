@@ -31,7 +31,7 @@ export function HeroSectionFr() {
 
   const handleBuyNowClick = () => {
     if (typeof window !== "undefined" && (window as any).gtag) {
-      ;(window as any).gtag("event", "add_to_cart", {
+      ; (window as any).gtag("event", "add_to_cart", {
         currency: "CAD",
         value: 95.0,
         items: [
@@ -43,21 +43,21 @@ export function HeroSectionFr() {
           },
         ],
       })
-      ;(window as any).gtag("event", "begin_checkout", {
-        currency: "CAD",
-        value: 95.0,
-        items: [
-          {
-            item_id: "chief-architect-x17",
-            item_name: "Chief Architect X17 Version complète",
-            price: 95.0,
-            quantity: 1,
-          },
-        ],
-      })
+        ; (window as any).gtag("event", "begin_checkout", {
+          currency: "CAD",
+          value: 95.0,
+          items: [
+            {
+              item_id: "chief-architect-x17",
+              item_name: "Chief Architect X17 Version complète",
+              price: 95.0,
+              quantity: 1,
+            },
+          ],
+        })
     }
 
-    window.location.href = "https://siroxdev-llcs.myshopify.com/cart/44037766316143:1"
+    window.location.href = "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00"
   }
 
   return (
