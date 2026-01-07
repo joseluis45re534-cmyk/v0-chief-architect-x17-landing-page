@@ -3,40 +3,65 @@ import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  
-  // Skip if we are already on a localised path or requesting a static asset
+
+  // Define locales
+  const locales = ['gb', 'fr', 'de']
+
+  // Check if the path is already localised
+  const pathnameIsMissingLocale = locales.every(
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  )
+
+  // If the path already has a locale, do nothing
+  if (!pathnameIsMissingLocale) {
+    return NextResponse.next()
+  }
+
+  // Skip internal Next.js paths, API routes, and static files
   if (
-    pathname.startsWith('/gb') ||
-    pathname.startsWith('/fr') ||
-    pathname.startsWith('/de') ||
-    pathname.includes('.') || // naive check for files (images, css, etc)
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/api')
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/static') ||
+    pathname.endsWith('.ico') ||
+    pathname.endsWith('.png') ||
+    pathname.endsWith('.jpg') ||
+    pathname.endsWith('.svg') ||
+    pathname.endsWith('.css') ||
+    pathname.endsWith('.js')
   ) {
     return NextResponse.next()
   }
 
-  // Get country from Vercel's geo header, fallback to cloudflare or generic
-  const country = request.geo?.country || 
-                  request.headers.get('x-vercel-ip-country') || 
-                  request.headers.get('cf-ipcountry') || 
-                  'US' // Default to US/Generic if unknown
+  // Only redirect on the main root page or specific landing pages that should be localized
+  // For this specific request, we want to redirect users landing on the default page.
+  if (pathname !== '/') {
+    return NextResponse.next()
+  }
 
-  const countryLower = country.toLowerCase()
+  // Get country from headers
+  const country = (
+    request.geo?.country ||
+    request.headers.get('x-vercel-ip-country') ||
+    request.headers.get('cf-ipcountry') ||
+    'US'
+  ).toUpperCase()
 
-  if (countryLower === 'gb' || countryLower === 'uk') {
+  // Console log for debugging (will appear in server logs)
+  console.log(`Middleware: Visitor from ${country} on ${pathname}`)
+
+  if (country === 'GB' || country === 'UK') {
     return NextResponse.redirect(new URL('/gb', request.url))
   }
-  
-  if (countryLower === 'fr') {
+
+  if (country === 'FR') {
     return NextResponse.redirect(new URL('/fr', request.url))
   }
-  
-  if (countryLower === 'de') {
+
+  if (country === 'DE') {
     return NextResponse.redirect(new URL('/de', request.url))
   }
 
-  // Default: no redirect (stay on main page which presumably is US/Global)
+  // Default behaviour: Stay on root (US/Global)
   return NextResponse.next()
 }
 
