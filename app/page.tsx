@@ -50,7 +50,7 @@ export default function Page() {
 
   return (
     <main className="min-h-screen">
-      <Header />
+      <Header region="default" />
       <HeroSection pricing={pricing} region="default" />
       <TrustedBySection />
       <WhatsNewSection />
@@ -60,7 +60,7 @@ export default function Page() {
       <TestimonialsSection />
       <SystemRequirementsSection />
       <PricingSection pricing={pricing} region="default" />
-      <GuaranteeSection />
+      <GuaranteeSection region="default" />
       <Footer />
 
       {/* Schema.org Product structured data */}

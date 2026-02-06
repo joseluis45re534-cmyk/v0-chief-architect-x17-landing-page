@@ -3,10 +3,17 @@
 import { Button } from "@/components/ui/button"
 import { Shield, Clock, CheckCircle, RefreshCcw } from "lucide-react"
 import { useEffect, useRef } from "react"
-import type { HTMLSection } from "react"
 
-export function GuaranteeSectionFr() {
-  const sectionRef = useRef<HTMLSection>(null)
+import { useConfig } from "@/contexts/config-context"
+
+interface GuaranteeSectionFrProps {
+  region?: string
+}
+
+export function GuaranteeSectionFr({ region = "ca" }: GuaranteeSectionFrProps) {
+  const { getRegionConfig } = useConfig()
+  const { price, currency, paymentLink, currencySymbol } = getRegionConfig(region)
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,32 +38,34 @@ export function GuaranteeSectionFr() {
   const handleBuyNowClick = () => {
     if (typeof window !== "undefined" && (window as any).gtag) {
       ; (window as any).gtag("event", "add_to_cart", {
-        currency: "CAD",
-        value: 95.0,
+        currency: currency,
+        value: price,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Version complète",
-            price: 95.0,
+            price: price,
             quantity: 1,
           },
         ],
       })
         ; (window as any).gtag("event", "begin_checkout", {
-          currency: "CAD",
-          value: 95.0,
+          currency: currency,
+          value: price,
           items: [
             {
               item_id: "chief-architect-x17",
               item_name: "Chief Architect X17 Version complète",
-              price: 95.0,
+              price: price,
               quantity: 1,
             },
           ],
         })
     }
 
-    window.location.href = "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00"
+    if (paymentLink) {
+      window.location.href = paymentLink
+    }
   }
 
   const features = [
@@ -138,7 +147,7 @@ export function GuaranteeSectionFr() {
                 className="bg-white hover:bg-white/90 text-[#1a3e6e] font-bold text-lg px-10 py-6 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
                 onClick={handleBuyNowClick}
               >
-                Obtenir Chief Architect X17 - 95 $ CAD
+                Obtenir Chief Architect X17 - {price} {currency === "EUR" ? "€" : "$ " + currency}
               </Button>
               <p className="text-white/70 text-sm mt-4">Accès instantané • Licence à vie • Garantie de 60 jours</p>
             </div>

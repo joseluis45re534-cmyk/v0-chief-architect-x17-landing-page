@@ -6,7 +6,15 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
 
-export function Header() {
+import { useConfig } from "@/contexts/config-context"
+
+interface HeaderProps {
+  region?: string
+}
+
+export function Header({ region = "default" }: HeaderProps) {
+  const { getRegionConfig } = useConfig()
+  const { price, currency, paymentLink, currencySymbol } = getRegionConfig(region)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [policiesOpen, setPoliciesOpen] = useState(false)
 
@@ -23,13 +31,13 @@ export function Header() {
     // Track add_to_cart event for analytics (Google Analytics 4)
     if (typeof window !== "undefined" && (window as any).gtag) {
       ; (window as any).gtag("event", "add_to_cart", {
-        currency: "USD",
-        value: 69.0,
+        currency: currency,
+        value: price,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Full Version",
-            price: 69.0,
+            price: price,
             quantity: 1,
           },
         ],
@@ -37,20 +45,22 @@ export function Header() {
 
         // Also track as begin_checkout
         ; (window as any).gtag("event", "begin_checkout", {
-          currency: "USD",
-          value: 69.0,
+          currency: currency,
+          value: price,
           items: [
             {
               item_id: "chief-architect-x17",
               item_name: "Chief Architect X17 Full Version",
-              price: 69.0,
+              price: price,
               quantity: 1,
             },
           ],
         })
     }
 
-    window.location.href = "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00"
+    if (paymentLink) {
+      window.location.href = paymentLink
+    }
   }
 
   return (
@@ -105,7 +115,7 @@ export function Header() {
               onClick={handleBuyNowClick}
               data-event="add_to_cart"
               data-product="chief-architect-x17"
-              data-value="69"
+              data-value={price}
             >
               Buy Now
             </Button>
@@ -164,7 +174,7 @@ export function Header() {
                 }}
                 data-event="add_to_cart"
                 data-product="chief-architect-x17"
-                data-value="69"
+                data-value={price}
               >
                 Buy Now
               </Button>

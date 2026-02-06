@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Shield, Clock, CheckCircle, RefreshCcw } from "lucide-react"
 import { useEffect, useRef } from "react"
 
+import { useConfig } from "@/contexts/config-context"
+
 const icons = [Clock, RefreshCcw, CheckCircle]
 
 interface GuaranteeSectionProps {
@@ -21,6 +23,7 @@ interface GuaranteeSectionProps {
       subtext: string
     }
   }
+  region?: string
 }
 
 export function GuaranteeSection({
@@ -45,11 +48,14 @@ export function GuaranteeSection({
     cta: {
       heading: "Ready to Transform Your Design Workflow?",
       description: "Join thousands of architects and designers who trust Chief Architect X17 for their projects.",
-      button: "Get Chief Architect X17 - $69",
+      button: "Get Chief Architect X17",
       subtext: "Instant access • Lifetime license • 60-day guarantee",
     },
   },
+  region = "default",
 }: GuaranteeSectionProps) {
+  const { getRegionConfig } = useConfig()
+  const { price, currency, paymentLink, currencySymbol } = getRegionConfig(region)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -76,32 +82,34 @@ export function GuaranteeSection({
     // Track add_to_cart event for analytics
     if (typeof window !== "undefined" && (window as any).gtag) {
       ; (window as any).gtag("event", "add_to_cart", {
-        currency: "USD",
-        value: 69.0,
+        currency: currency,
+        value: price,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Full Version",
-            price: 69.0,
+            price: price,
             quantity: 1,
           },
         ],
       })
         ; (window as any).gtag("event", "begin_checkout", {
-          currency: "USD",
-          value: 69.0,
+          currency: currency,
+          value: price,
           items: [
             {
               item_id: "chief-architect-x17",
               item_name: "Chief Architect X17 Full Version",
-              price: 69.0,
+              price: price,
               quantity: 1,
             },
           ],
         })
     }
 
-    window.location.href = "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00"
+    if (paymentLink) {
+      window.location.href = paymentLink
+    }
   }
 
   return (
@@ -164,7 +172,7 @@ export function GuaranteeSection({
                 className="bg-white hover:bg-white/90 text-[#1a3e6e] font-bold text-lg px-10 py-6 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
                 onClick={handleBuyNowClick}
               >
-                {content.cta?.button}
+                {content.cta?.button} - {currency === "EUR" ? `${price}€` : `${currencySymbol}${price}`}
               </Button>
               <p className="text-white/70 text-sm mt-4">{content.cta?.subtext}</p>
             </div>

@@ -276,14 +276,14 @@ export default function Page() {
         cta: {
             heading: "Prêt à transformer votre flux de travail de conception ?",
             description: "Rejoignez des milliers d'architectes et de designers qui font confiance à Chief Architect X17 pour leurs projets.",
-            button: "Obtenir Chief Architect X17 - 59€",
+            button: "Obtenir Chief Architect X17",
             subtext: "Accès instantané • Licence à vie • Garantie de 60 jours",
         },
     }
 
     return (
         <main className="min-h-screen">
-            <Header />
+            <Header region="fr" />
             <HeroSection content={frContent} pricing={frPricing} region="fr" />
             <TrustedBySection content={frTrustedBy} />
             <WhatsNewSection content={frWhatsNew} />
@@ -293,7 +293,7 @@ export default function Page() {
             <TestimonialsSection content={frTestimonials} />
             <SystemRequirementsSection content={frRequirements} />
             <PricingSection content={frPricingContent} pricing={frPricing} region="fr" />
-            <GuaranteeSection content={frGuarantee} />
+            <GuaranteeSection content={frGuarantee} region="fr" />
             <Footer />
 
             {/* Schema.org Product structured data */}

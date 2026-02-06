@@ -37,7 +37,7 @@ export const metadata = {
 export default function CAPage() {
   return (
     <main className="min-h-screen">
-      <HeaderFr />
+      <HeaderFr region="ca" />
       <HeroSectionFr region="ca" />
       <TrustedBySection />
       <WhatsNewSection />
@@ -47,7 +47,7 @@ export default function CAPage() {
       <TestimonialsSection />
       <SystemRequirementsSection />
       <PricingSectionFr region="ca" />
-      <GuaranteeSectionFr />
+      <GuaranteeSectionFr region="ca" />
       <Footer />
 
       {/* Schema.org Product structured data */}

@@ -257,11 +257,11 @@ export default function Page() {
     }
 
     const deGuarantee = {
-        heading: "60-Tage-Geld-zurück-Garantie",
-        subheading: "Wir sind zuversichtlich, dass Sie Chief Architect X17 lieben werden. Testen Sie es 60 Tage lang risikofrei. Wenn Sie nicht vollständig zufrieden sind, erstatten wir Ihren Kauf – ohne Fragen.",
+        heading: "60-Tage Geld-zurück-Garantie",
+        subheading: "Wir sind zuversichtlich, dass Sie Chief Architect X17 lieben werden. Testen Sie es 60 Tage lang risikofrei. Wenn Sie nicht vollständig zufrieden sind, erstatten wir Ihren Kaufpreis – ohne Fragen.",
         features: [
             {
-                title: "60 Tage zum Testen",
+                title: "60 Tage testen",
                 description: "Nehmen Sie sich volle 60 Tage Zeit, um jede Funktion und Fähigkeit zu erkunden",
             },
             {
@@ -275,15 +275,15 @@ export default function Page() {
         ],
         cta: {
             heading: "Bereit, Ihren Design-Workflow zu transformieren?",
-            description: "Schließen Sie sich Tausenden von Architekten und Designern an, die Chief Architect X17 für ihre Projekte vertrauen.",
-            button: "Chief Architect X17 holen - 59€",
-            subtext: "Sofortiger Zugriff • Lebenslange Lizenz • 60-Tage-Garantie",
+            description: "Schließen Sie sich Tausenden von Architekten und Designern an, die bei ihren Projekten auf Chief Architect X17 vertrauen.",
+            button: "Chief Architect X17 holen",
+            subtext: "Sofortiger Zugang • Lebenslange Lizenz • 60-Tage-Garantie",
         },
     }
 
     return (
         <main className="min-h-screen">
-            <Header />
+            <Header region="de" />
             <HeroSection content={deContent} pricing={dePricing} region="de" />
             <TrustedBySection content={deTrustedBy} />
             <WhatsNewSection content={deWhatsNew} />
@@ -293,7 +293,7 @@ export default function Page() {
             <TestimonialsSection content={deTestimonials} />
             <SystemRequirementsSection content={deRequirements} />
             <PricingSection content={dePricingContent} pricing={dePricing} region="de" />
-            <GuaranteeSection content={deGuarantee} />
+            <GuaranteeSection content={deGuarantee} region="de" />
             <Footer />
 
             {/* Schema.org Product structured data */}
