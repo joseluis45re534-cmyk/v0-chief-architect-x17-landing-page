@@ -4,7 +4,15 @@ import { Button } from "@/components/ui/button"
 import { Check, ShieldCheck, Crown } from "lucide-react"
 import { useEffect, useRef } from "react"
 
-export function PricingSectionFr() {
+import { useConfig } from "@/contexts/config-context"
+
+interface PricingSectionFrProps {
+  region?: string
+}
+
+export function PricingSectionFr({ region = "ca" }: PricingSectionFrProps) {
+  const { getRegionConfig } = useConfig()
+  const { price, currency, paymentLink, currencySymbol } = getRegionConfig(region)
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -30,32 +38,34 @@ export function PricingSectionFr() {
   const handleBuyNowClick = () => {
     if (typeof window !== "undefined" && (window as any).gtag) {
       ; (window as any).gtag("event", "add_to_cart", {
-        currency: "CAD",
-        value: 95.0,
+        currency: currency,
+        value: price,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Version complète",
-            price: 95.0,
+            price: price,
             quantity: 1,
           },
         ],
       })
         ; (window as any).gtag("event", "begin_checkout", {
-          currency: "CAD",
-          value: 95.0,
+          currency: currency,
+          value: price,
           items: [
             {
               item_id: "chief-architect-x17",
               item_name: "Chief Architect X17 Version complète",
-              price: 95.0,
+              price: price,
               quantity: 1,
             },
           ],
         })
     }
 
-    window.location.href = "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00"
+    if (paymentLink) {
+      window.location.href = paymentLink
+    }
   }
 
   const features = [
@@ -97,9 +107,9 @@ export function PricingSectionFr() {
               </h3>
               <div className="mb-3 flex items-baseline justify-center gap-2">
                 <span className="text-6xl font-bold" style={{ color: "#2d5a91" }}>
-                  95
+                  {price}
                 </span>
-                <span className="text-2xl font-semibold text-gray-600">$ CAD</span>
+                <span className="text-2xl font-semibold text-gray-600">{currencySymbol} {currency}</span>
               </div>
               <p className="text-gray-600 text-lg leading-relaxed">Accès complet à toutes les fonctionnalités</p>
             </div>
@@ -143,9 +153,9 @@ export function PricingSectionFr() {
               onClick={handleBuyNowClick}
               data-event="add_to_cart"
               data-product="chief-architect-x17"
-              data-value="95"
+              data-value={price}
             >
-              Acheter maintenant - 95 $ CAD
+              Acheter maintenant - {price} {currency === "EUR" ? "€" : "$ " + currency}
             </Button>
           </div>
         </div>

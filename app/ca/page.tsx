@@ -38,7 +38,7 @@ export default function CAPage() {
   return (
     <main className="min-h-screen">
       <HeaderFr />
-      <HeroSectionFr />
+      <HeroSectionFr region="ca" />
       <TrustedBySection />
       <WhatsNewSection />
       <VideoSection />
@@ -46,7 +46,7 @@ export default function CAPage() {
       <ComparisonSection />
       <TestimonialsSection />
       <SystemRequirementsSection />
-      <PricingSectionFr />
+      <PricingSectionFr region="ca" />
       <GuaranteeSectionFr />
       <Footer />
 

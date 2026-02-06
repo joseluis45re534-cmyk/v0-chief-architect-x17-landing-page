@@ -8,12 +8,21 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Lock, Save, AlertCircle } from "lucide-react"
+import { Lock, Save, AlertCircle, Globe } from "lucide-react"
+
+const REGIONS = [
+    { id: "default", name: "Default (Global)", flag: "🌐" },
+    { id: "fr", name: "France", flag: "🇫🇷" },
+    { id: "de", name: "Germany", flag: "🇩🇪" },
+    { id: "gb", name: "United Kingdom", flag: "🇬🇧" },
+    { id: "ca", name: "Canada", flag: "🇨🇦" },
+]
 
 export default function AdminPage() {
-    const { price, currency, paymentLink, updateConfig } = useConfig()
+    const { config, updateConfig } = useConfig()
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [password, setPassword] = useState("")
+    const [selectedRegion, setSelectedRegion] = useState("default")
     const [formData, setFormData] = useState({
         price: "",
         currency: "",
@@ -21,16 +30,17 @@ export default function AdminPage() {
     })
     const [saveStatus, setSaveStatus] = useState<"idle" | "success">("idle")
 
-    // Initialize form data from config
+    // Initialize form data when config or region changes
     useEffect(() => {
-        if (price && currency && paymentLink) {
+        const regionConfig = config[selectedRegion] || config["default"]
+        if (regionConfig) {
             setFormData({
-                price: price.toString(),
-                currency,
-                paymentLink,
+                price: regionConfig.price.toString(),
+                currency: regionConfig.currency,
+                paymentLink: regionConfig.paymentLink,
             })
         }
-    }, [price, currency, paymentLink])
+    }, [config, selectedRegion])
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault()
@@ -45,7 +55,7 @@ export default function AdminPage() {
 
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault()
-        updateConfig({
+        updateConfig(selectedRegion, {
             price: Number(formData.price),
             currency: formData.currency,
             paymentLink: formData.paymentLink,
@@ -102,10 +112,40 @@ export default function AdminPage() {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Global Settings</CardTitle>
-                        <CardDescription>Updates apply to all language versions immediately</CardDescription>
+                        <CardTitle className="flex items-center gap-2">
+                            <Globe className="h-5 w-5" />
+                            Region Configuration
+                        </CardTitle>
+                        <CardDescription>Select a region to configure its pricing and payment details</CardDescription>
                     </CardHeader>
                     <CardContent>
+                        <div className="mb-6">
+                            <Label htmlFor="region" className="mb-2 block">
+                                Select Region
+                            </Label>
+                            <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select region" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {REGIONS.map((region) => (
+                                        <SelectItem key={region.id} value={region.id}>
+                                            {region.flag} {region.name}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="p-4 bg-muted/50 rounded-lg border mb-6">
+                            <h3 className="font-semibold mb-1 text-sm text-gray-700">
+                                Editing: {REGIONS.find((r) => r.id === selectedRegion)?.name}
+                            </h3>
+                            <p className="text-xs text-gray-500">
+                                These settings will apply to users visiting <code>/{selectedRegion === "default" ? "" : selectedRegion}</code>
+                            </p>
+                        </div>
+
                         <form onSubmit={handleSave} className="space-y-6">
                             <div className="grid gap-4">
                                 <div className="grid gap-2">
@@ -131,6 +171,7 @@ export default function AdminPage() {
                                             <SelectItem value="EUR">EUR (€)</SelectItem>
                                             <SelectItem value="USD">USD ($)</SelectItem>
                                             <SelectItem value="GBP">GBP (£)</SelectItem>
+                                            <SelectItem value="CAD">CAD ($)</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>

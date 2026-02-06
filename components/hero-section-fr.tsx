@@ -5,7 +5,16 @@ import { ArrowRight, Play, Shield, Crown } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { VideoModal } from "@/components/video-modal"
 
-export function HeroSectionFr() {
+import { useConfig } from "@/contexts/config-context"
+
+interface HeroSectionFrProps {
+  region?: string
+}
+
+export function HeroSectionFr({ region = "ca" }: HeroSectionFrProps) {
+  const { getRegionConfig } = useConfig()
+  const { price, currency, paymentLink } = getRegionConfig(region)
+
   const heroRef = useRef<HTMLElement>(null)
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 
@@ -32,32 +41,34 @@ export function HeroSectionFr() {
   const handleBuyNowClick = () => {
     if (typeof window !== "undefined" && (window as any).gtag) {
       ; (window as any).gtag("event", "add_to_cart", {
-        currency: "CAD",
-        value: 95.0,
+        currency: currency,
+        value: price,
         items: [
           {
             item_id: "chief-architect-x17",
             item_name: "Chief Architect X17 Version complète",
-            price: 95.0,
+            price: price,
             quantity: 1,
           },
         ],
       })
         ; (window as any).gtag("event", "begin_checkout", {
-          currency: "CAD",
-          value: 95.0,
+          currency: currency,
+          value: price,
           items: [
             {
               item_id: "chief-architect-x17",
               item_name: "Chief Architect X17 Version complète",
-              price: 95.0,
+              price: price,
               quantity: 1,
             },
           ],
         })
     }
 
-    window.location.href = "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00"
+    if (paymentLink) {
+      window.location.href = paymentLink
+    }
   }
 
   return (
@@ -103,7 +114,7 @@ export function HeroSectionFr() {
                   data-product="chief-architect-x17"
                   data-value="95"
                 >
-                  Acheter maintenant - 95 $ CAD
+                  Acheter maintenant - {price} {currency === "EUR" ? "€" : "$ " + currency}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
 

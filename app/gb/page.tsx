@@ -87,7 +87,7 @@ export default function Page() {
     return (
         <main className="min-h-screen">
             <Header />
-            <HeroSection content={gbContent} pricing={gbPricing} />
+            <HeroSection content={gbContent} pricing={gbPricing} region="gb" />
             <TrustedBySection />
             <WhatsNewSection />
             <VideoSection />
@@ -95,7 +95,7 @@ export default function Page() {
             <ComparisonSection />
             <TestimonialsSection />
             <SystemRequirementsSection />
-            <PricingSection content={gbPricingContent} pricing={gbPricing} />
+            <PricingSection content={gbPricingContent} pricing={gbPricing} region="gb" />
             <GuaranteeSection />
             <Footer />
 

@@ -284,7 +284,7 @@ export default function Page() {
     return (
         <main className="min-h-screen">
             <Header />
-            <HeroSection content={deContent} pricing={dePricing} />
+            <HeroSection content={deContent} pricing={dePricing} region="de" />
             <TrustedBySection content={deTrustedBy} />
             <WhatsNewSection content={deWhatsNew} />
             <VideoSection content={deVideo} />
@@ -292,7 +292,7 @@ export default function Page() {
             <ComparisonSection content={deComparison} />
             <TestimonialsSection content={deTestimonials} />
             <SystemRequirementsSection content={deRequirements} />
-            <PricingSection content={dePricingContent} pricing={dePricing} />
+            <PricingSection content={dePricingContent} pricing={dePricing} region="de" />
             <GuaranteeSection content={deGuarantee} />
             <Footer />
 

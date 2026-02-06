@@ -48,8 +48,10 @@ export function HeroSection({
     price: 69,
     paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
   },
-}: HeroSectionProps) {
-  const { price, currency, paymentLink, currencySymbol } = useConfig()
+  region = "default",
+}: HeroSectionProps & { region?: string }) {
+  const { getRegionConfig } = useConfig()
+  const { price, currency, paymentLink, currencySymbol } = getRegionConfig(region)
 
   // Merge prop pricing with context config (context takes precedence)
   const pricing = {

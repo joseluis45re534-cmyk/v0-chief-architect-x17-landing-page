@@ -52,8 +52,10 @@ export function PricingSection({
     price: 69,
     paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
   },
-}: PricingSectionProps) {
-  const { price, currency, paymentLink, currencySymbol } = useConfig()
+  region = "default",
+}: PricingSectionProps & { region?: string }) {
+  const { getRegionConfig } = useConfig()
+  const { price, currency, paymentLink, currencySymbol } = getRegionConfig(region)
 
   const pricing = {
     ...propPricing,
