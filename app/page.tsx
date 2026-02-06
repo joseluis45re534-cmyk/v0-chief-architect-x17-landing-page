@@ -41,10 +41,17 @@ export const metadata = {
 }
 
 export default function Page() {
+  const pricing = {
+    price: 59,
+    currencyCode: "EUR",
+    currencySymbol: "€",
+    paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
+  }
+
   return (
     <main className="min-h-screen">
       <Header />
-      <HeroSection />
+      <HeroSection pricing={pricing} />
       <TrustedBySection />
       <WhatsNewSection />
       <VideoSection />
@@ -52,7 +59,7 @@ export default function Page() {
       <ComparisonSection />
       <TestimonialsSection />
       <SystemRequirementsSection />
-      <PricingSection />
+      <PricingSection pricing={pricing} />
       <GuaranteeSection />
       <Footer />
 
@@ -68,8 +75,8 @@ export default function Page() {
             operatingSystem: "Windows, macOS",
             offers: {
               "@type": "AggregateOffer",
-              priceCurrency: "USD",
-              lowPrice: "69",
+              priceCurrency: pricing.currencyCode,
+              lowPrice: pricing.price.toString(),
             },
             aggregateRating: {
               "@type": "AggregateRating",

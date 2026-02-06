@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Check, ShieldCheck, Crown } from "lucide-react"
 import { useEffect, useRef } from "react"
+import { useConfig } from "@/contexts/config-context"
 
 interface PricingSectionProps {
   content?: {
@@ -26,6 +27,7 @@ interface PricingSectionProps {
 
 export function PricingSection({
   content = {
+    // ... defaults
     heading: "Get Chief Architect X17 Today",
     subheading: "One-time purchase with lifetime access. Includes all premium features and free updates.",
     badge: "ONE TIME PAYMENT - LIFETIME ACTIVATION",
@@ -44,13 +46,23 @@ export function PricingSection({
     ],
     buyButton: "Buy Now",
   },
-  pricing = {
+  pricing: propPricing = {
     currencySymbol: "$",
     currencyCode: "USD",
     price: 69,
     paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
   },
 }: PricingSectionProps) {
+  const { price, currency, paymentLink, currencySymbol } = useConfig()
+
+  const pricing = {
+    ...propPricing,
+    price,
+    currencyCode: currency,
+    currencySymbol,
+    paymentLink: paymentLink || propPricing.paymentLink,
+  }
+
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {

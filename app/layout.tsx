@@ -31,6 +31,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { ConfigProvider } from "@/contexts/config-context"
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,9 +79,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           ></iframe>
         </noscript>
 
-        {children}
-        <CookieBanner />
-        <Analytics />
+        <ConfigProvider>
+          {children}
+          <CookieBanner />
+          <Analytics />
+        </ConfigProvider>
       </body>
     </html>
   )

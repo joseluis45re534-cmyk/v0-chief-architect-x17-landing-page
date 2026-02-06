@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Play, Shield, Crown } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { VideoModal } from "@/components/video-modal"
+import { useConfig } from "@/contexts/config-context"
 
 interface HeroSectionProps {
   content?: {
@@ -25,6 +26,7 @@ interface HeroSectionProps {
 
 export function HeroSection({
   content = {
+    // ... defaults (keep them)
     badge: "New Release: Chief Architect X17",
     title: (
       <>
@@ -40,13 +42,24 @@ export function HeroSection({
     oneTimePurchase: "One-time purchase",
     lifetimeAccess: "Lifetime access",
   },
-  pricing = {
+  pricing: propPricing = {
     currencySymbol: "$",
     currencyCode: "USD",
     price: 69,
     paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
   },
 }: HeroSectionProps) {
+  const { price, currency, paymentLink, currencySymbol } = useConfig()
+
+  // Merge prop pricing with context config (context takes precedence)
+  const pricing = {
+    ...propPricing,
+    price,
+    currencyCode: currency,
+    currencySymbol,
+    paymentLink: paymentLink || propPricing.paymentLink,
+  }
+
   const heroRef = useRef<HTMLElement>(null)
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
 
