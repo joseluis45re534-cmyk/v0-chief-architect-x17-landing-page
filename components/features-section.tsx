@@ -3,46 +3,58 @@
 import { Box, Palette, FileText, ListChecks, Eye, Network } from "lucide-react"
 import { useEffect, useRef } from "react"
 
-const features = [
-  {
-    icon: Box,
-    title: "3D Modeling",
-    description:
-      "Create detailed 3D architectural models with intelligent building tools and parametric objects that automatically adjust to design changes.",
-  },
-  {
-    icon: Palette,
-    title: "Interior Design",
-    description:
-      "Design stunning interiors with extensive libraries of furniture, fixtures, materials, and finishes. Visualize every detail before construction.",
-  },
-  {
-    icon: FileText,
-    title: "Construction Documents",
-    description:
-      "Generate professional construction drawings, elevations, sections, and details automatically from your 3D model with precision accuracy.",
-  },
-  {
-    icon: ListChecks,
-    title: "Material Lists",
-    description:
-      "Automatically generate comprehensive material lists and cost estimates directly from your design with real-time updates as you make changes.",
-  },
-  {
-    icon: Eye,
-    title: "Rendering & Visualization",
-    description:
-      "Create photorealistic renderings and walkthroughs with advanced ray-tracing technology. Present your vision with stunning clarity.",
-  },
-  {
-    icon: Network,
-    title: "BIM Integration",
-    description:
-      "Full BIM support with IFC import/export capabilities. Collaborate seamlessly with engineers and other design professionals.",
-  },
-]
+const icons = [Box, Palette, FileText, ListChecks, Eye, Network]
 
-export function FeaturesSection() {
+interface FeaturesSectionProps {
+  content?: {
+    heading?: string
+    subheading?: string
+    features?: {
+      title: string
+      description: string
+    }[]
+  }
+}
+
+export function FeaturesSection({
+  content = {
+    heading: "Complete Architectural Design Solution",
+    subheading:
+      "Everything you need to design, document, and present your architectural projects with professional precision",
+    features: [
+      {
+        title: "3D Modeling",
+        description:
+          "Create detailed 3D architectural models with intelligent building tools and parametric objects that automatically adjust to design changes.",
+      },
+      {
+        title: "Interior Design",
+        description:
+          "Design stunning interiors with extensive libraries of furniture, fixtures, materials, and finishes. Visualize every detail before construction.",
+      },
+      {
+        title: "Construction Documents",
+        description:
+          "Generate professional construction drawings, elevations, sections, and details automatically from your 3D model with precision accuracy.",
+      },
+      {
+        title: "Material Lists",
+        description:
+          "Automatically generate comprehensive material lists and cost estimates directly from your design with real-time updates as you make changes.",
+      },
+      {
+        title: "Rendering & Visualization",
+        description:
+          "Create photorealistic renderings and walkthroughs with advanced ray-tracing technology. Present your vision with stunning clarity.",
+      },
+      {
+        title: "BIM Integration",
+        description:
+          "Full BIM support with IFC import/export capabilities. Collaborate seamlessly with engineers and other design professionals.",
+      },
+    ],
+  },
+}: FeaturesSectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -70,16 +82,16 @@ export function FeaturesSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-on-scroll">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance" style={{ color: "#1a3e6e" }}>
-            Complete Architectural Design Solution
+            {content.heading}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto text-pretty leading-relaxed">
-            Everything you need to design, document, and present your architectural projects with professional precision
+            {content.subheading}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon
+          {content.features?.map((feature, index) => {
+            const Icon = icons[index % icons.length]
             return (
               <div key={index} className="animate-on-scroll group" style={{ animationDelay: `${index * 100}ms` }}>
                 <div

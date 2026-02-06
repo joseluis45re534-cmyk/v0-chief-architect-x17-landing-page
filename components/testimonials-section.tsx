@@ -3,58 +3,76 @@
 import { Star } from "lucide-react"
 import { useEffect, useRef } from "react"
 
-const testimonials = [
-  {
-    name: "Beatrice Cannon",
-    role: "Contractor",
-    experience: "25 years in construction",
-    quote:
-      "As a contractor with 25 years in construction, I've seen plenty of overcomplicated software. Plan7 gets straight to the point. It lets me show clients floor plans and quick 3D models before starting a project.",
-    rating: 5,
-  },
-  {
-    name: "Daniel Santos",
-    role: "Homeowner & Designer",
-    experience: "Self-designed home",
-    quote:
-      "I bought Plan7Architect to design my own house, and I am amazed at how easy it is to use. The 3D view helps visualize every detail, and the precision in 2D planning is perfect.",
-    rating: 5,
-  },
-  {
-    name: "kids",
-    role: "Professional",
-    experience: "Garage extension project",
-    quote:
-      "I'm honestly impressed. Planned a full garage extension and sent the DWG files to my draftsman — he opened everything in AutoCAD with no issues and made the engineering adjustments. Saved me weeks.",
-    rating: 5,
-  },
-  {
-    name: "Oscar Kavanagh",
-    role: "Carpenter",
-    experience: "Customer presentations",
-    quote:
-      "I am a carpenter and needed something to show customers simple layouts in 3D. Works way better than I expected. It's fast, doesn't crash, and the models look clean. For the price, unbeatable.",
-    rating: 5,
-  },
-  {
-    name: "Elvira Gina",
-    role: "Design Professional",
-    experience: "Professional plans",
-    quote:
-      "Gives me the same quality of plans I used to pay thousands for. It's intuitive, fast, and looks incredibly professional. I especially love how quickly I can switch between floor plans, sections, and 3D views.",
-    rating: 5,
-  },
-  {
-    name: "Stephen Kerata",
-    role: "Family Renovation Business",
-    experience: "Small business owner",
-    quote:
-      "We run a small family renovation business, and Plan7Architect became our go-to planning tool. My wife does the interior layouts, I focus on structure, and together we can show customers 3D previews within hours.",
-    rating: 5,
-  },
-]
+interface TestimonialsSectionProps {
+  content?: {
+    heading?: string
+    subheading?: string
+    testimonials?: {
+      name: string
+      role: string
+      experience: string
+      quote: string
+      rating: number
+    }[]
+  }
+}
 
-export function TestimonialsSection() {
+export function TestimonialsSection({
+  content = {
+    heading: "Trusted by Design Professionals Worldwide",
+    subheading: "Real reviews from architects, designers, builders, and homeowners using Chief Architect",
+    testimonials: [
+      {
+        name: "Beatrice Cannon",
+        role: "Contractor",
+        experience: "25 years in construction",
+        quote:
+          "As a contractor with 25 years in construction, I've seen plenty of overcomplicated software. Plan7 gets straight to the point. It lets me show clients floor plans and quick 3D models before starting a project.",
+        rating: 5,
+      },
+      {
+        name: "Daniel Santos",
+        role: "Homeowner & Designer",
+        experience: "Self-designed home",
+        quote:
+          "I bought Plan7Architect to design my own house, and I am amazed at how easy it is to use. The 3D view helps visualize every detail, and the precision in 2D planning is perfect.",
+        rating: 5,
+      },
+      {
+        name: "kids",
+        role: "Professional",
+        experience: "Garage extension project",
+        quote:
+          "I'm honestly impressed. Planned a full garage extension and sent the DWG files to my draftsman — he opened everything in AutoCAD with no issues and made the engineering adjustments. Saved me weeks.",
+        rating: 5,
+      },
+      {
+        name: "Oscar Kavanagh",
+        role: "Carpenter",
+        experience: "Customer presentations",
+        quote:
+          "I am a carpenter and needed something to show customers simple layouts in 3D. Works way better than I expected. It's fast, doesn't crash, and the models look clean. For the price, unbeatable.",
+        rating: 5,
+      },
+      {
+        name: "Elvira Gina",
+        role: "Design Professional",
+        experience: "Professional plans",
+        quote:
+          "Gives me the same quality of plans I used to pay thousands for. It's intuitive, fast, and looks incredibly professional. I especially love how quickly I can switch between floor plans, sections, and 3D views.",
+        rating: 5,
+      },
+      {
+        name: "Stephen Kerata",
+        role: "Family Renovation Business",
+        experience: "Small business owner",
+        quote:
+          "We run a small family renovation business, and Plan7Architect became our go-to planning tool. My wife does the interior layouts, I focus on structure, and together we can show customers 3D previews within hours.",
+        rating: 5,
+      },
+    ],
+  },
+}: TestimonialsSectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -82,15 +100,15 @@ export function TestimonialsSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-on-scroll">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance" style={{ color: "#1a3e6e" }}>
-            Trusted by Design Professionals Worldwide
+            {content.heading}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto text-pretty leading-relaxed">
-            Real reviews from architects, designers, builders, and homeowners using Chief Architect
+            {content.subheading}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {testimonials.map((testimonial, index) => (
+          {content.testimonials?.map((testimonial, index) => (
             <div
               key={index}
               className="animate-on-scroll p-8 rounded-xl border-2 hover:shadow-xl transition-all duration-300 bg-white"

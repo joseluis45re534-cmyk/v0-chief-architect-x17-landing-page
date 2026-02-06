@@ -4,7 +4,52 @@ import { Button } from "@/components/ui/button"
 import { Shield, Clock, CheckCircle, RefreshCcw } from "lucide-react"
 import { useEffect, useRef } from "react"
 
-export function GuaranteeSection() {
+const icons = [Clock, RefreshCcw, CheckCircle]
+
+interface GuaranteeSectionProps {
+  content?: {
+    heading?: string
+    subheading?: string
+    features?: {
+      title: string
+      description: string
+    }[]
+    cta?: {
+      heading: string
+      description: string
+      button: string
+      subtext: string
+    }
+  }
+}
+
+export function GuaranteeSection({
+  content = {
+    heading: "60-Day Money-Back Guarantee",
+    subheading:
+      "We're confident you'll love Chief Architect X17. Try it risk-free for 60 days. If you're not completely satisfied, we'll refund your purchase - no questions asked.",
+    features: [
+      {
+        title: "60 Days to Try",
+        description: "Take a full 60 days to explore every feature and capability",
+      },
+      {
+        title: "Easy Returns",
+        description: "Simple refund process - just email us your order number",
+      },
+      {
+        title: "No Questions Asked",
+        description: "If you're not satisfied, we'll process your full refund",
+      },
+    ],
+    cta: {
+      heading: "Ready to Transform Your Design Workflow?",
+      description: "Join thousands of architects and designers who trust Chief Architect X17 for their projects.",
+      button: "Get Chief Architect X17 - $69",
+      subtext: "Instant access • Lifetime license • 60-day guarantee",
+    },
+  },
+}: GuaranteeSectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -59,24 +104,6 @@ export function GuaranteeSection() {
     window.location.href = "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00"
   }
 
-  const features = [
-    {
-      icon: Clock,
-      title: "60 Days to Try",
-      description: "Take a full 60 days to explore every feature and capability",
-    },
-    {
-      icon: RefreshCcw,
-      title: "Easy Returns",
-      description: "Simple refund process - just email us your order number",
-    },
-    {
-      icon: CheckCircle,
-      title: "No Questions Asked",
-      description: "If you're not satisfied, we'll process your full refund",
-    },
-  ]
-
   return (
     <section ref={sectionRef} className="py-20 md:py-28 relative overflow-hidden">
       {/* Background gradient */}
@@ -95,49 +122,51 @@ export function GuaranteeSection() {
               </div>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white text-balance">60-Day Money-Back Guarantee</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white text-balance">{content.heading}</h2>
             <p className="text-xl text-white/90 max-w-3xl mx-auto text-pretty leading-relaxed">
-              We're confident you'll love Chief Architect X17. Try it risk-free for 60 days. If you're not completely
-              satisfied, we'll refund your purchase - no questions asked.
+              {content.subheading}
             </p>
           </div>
 
           {/* Feature grid */}
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="animate-on-scroll text-center bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="inline-flex items-center justify-center mb-4">
-                  <div className="bg-white/20 rounded-full p-4">
-                    <feature.icon className="w-8 h-8 text-white" strokeWidth={1.5} />
+            {content.features?.map((feature, index) => {
+              const Icon = icons[index % icons.length]
+              return (
+                <div
+                  key={index}
+                  className="animate-on-scroll text-center bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="inline-flex items-center justify-center mb-4">
+                    <div className="bg-white/20 rounded-full p-4">
+                      <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
+                    </div>
                   </div>
+                  <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                  <p className="text-white/80 leading-relaxed">{feature.description}</p>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-white/80 leading-relaxed">{feature.description}</p>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
           {/* CTA section */}
           <div className="text-center animate-on-scroll">
             <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-10 border border-white/20 max-w-2xl mx-auto">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 text-balance">
-                Ready to Transform Your Design Workflow?
+                {content.cta?.heading}
               </h3>
               <p className="text-white/90 mb-8 text-lg leading-relaxed">
-                Join thousands of architects and designers who trust Chief Architect X17 for their projects.
+                {content.cta?.description}
               </p>
               <Button
                 size="lg"
                 className="bg-white hover:bg-white/90 text-[#1a3e6e] font-bold text-lg px-10 py-6 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105"
                 onClick={handleBuyNowClick}
               >
-                Get Chief Architect X17 - $69
+                {content.cta?.button}
               </Button>
-              <p className="text-white/70 text-sm mt-4">Instant access • Lifetime license • 60-day guarantee</p>
+              <p className="text-white/70 text-sm mt-4">{content.cta?.subtext}</p>
             </div>
           </div>
         </div>
