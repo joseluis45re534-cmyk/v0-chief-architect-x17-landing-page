@@ -3,7 +3,21 @@
 import { Button } from "@/components/ui/button"
 import { useEffect, useRef } from "react"
 
-export function VideoSection() {
+interface VideoSectionProps {
+  content?: {
+    heading?: string
+    description?: string
+    watchFullDemo?: string
+  }
+}
+
+export function VideoSection({
+  content = {
+    heading: "See Chief Architect X17 in Action",
+    description: "Watch how professionals are transforming their design workflow with X17's powerful new features",
+    watchFullDemo: "Watch Full Demo",
+  },
+}: VideoSectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -32,10 +46,10 @@ export function VideoSection() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 animate-on-scroll">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance" style={{ color: "#1a3e6e" }}>
-              See Chief Architect X17 in Action
+              {content.heading}
             </h2>
             <p className="text-xl text-gray-600 text-pretty leading-relaxed">
-              Watch how professionals are transforming their design workflow with X17's powerful new features
+              {content.description}
             </p>
           </div>
 
@@ -56,7 +70,7 @@ export function VideoSection() {
               className="text-lg px-8 py-6 border-2 bg-transparent"
               style={{ borderColor: "#2d5a91", color: "#1a3e6e" }}
             >
-              Watch Full Demo
+              {content.watchFullDemo}
             </Button>
           </div>
         </div>

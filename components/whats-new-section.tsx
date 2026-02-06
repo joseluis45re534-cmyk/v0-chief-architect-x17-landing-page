@@ -3,30 +3,46 @@
 import { Zap, Wand2, Home, Wrench } from "lucide-react"
 import { useEffect, useRef } from "react"
 
-const features = [
-  {
-    icon: Zap,
-    title: "Faster 3D Rendering Engine",
-    description: "Experience up to 3x faster render times with the completely rebuilt rendering architecture.",
-  },
-  {
-    icon: Wand2,
-    title: "Auto-Materials Detection",
-    description: "Smart material recognition automatically applies appropriate textures and specifications.",
-  },
-  {
-    icon: Home,
-    title: "Smart Walls & Roofs",
-    description: "Parametric building components that adapt intelligently to design changes in real-time.",
-  },
-  {
-    icon: Wrench,
-    title: "CAD Enhancement Tools",
-    description: "Professional-grade CAD tools with precision drafting and advanced annotation features.",
-  },
-]
+const icons = [Zap, Wand2, Home, Wrench]
 
-export function WhatsNewSection() {
+interface WhatsNewSectionProps {
+  content?: {
+    badge?: string
+    heading?: string
+    description?: string
+    features?: {
+      title: string
+      description: string
+    }[]
+  }
+}
+
+export function WhatsNewSection({
+  content = {
+    badge: "What's New in X17",
+    heading: "Breakthrough Features That Transform Your Workflow",
+    description:
+      "Chief Architect X17 introduces powerful new capabilities designed to accelerate your design process and deliver exceptional results.",
+    features: [
+      {
+        title: "Faster 3D Rendering Engine",
+        description: "Experience up to 3x faster render times with the completely rebuilt rendering architecture.",
+      },
+      {
+        title: "Auto-Materials Detection",
+        description: "Smart material recognition automatically applies appropriate textures and specifications.",
+      },
+      {
+        title: "Smart Walls & Roofs",
+        description: "Parametric building components that adapt intelligently to design changes in real-time.",
+      },
+      {
+        title: "CAD Enhancement Tools",
+        description: "Professional-grade CAD tools with precision drafting and advanced annotation features.",
+      },
+    ],
+  },
+}: WhatsNewSectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -57,20 +73,19 @@ export function WhatsNewSection() {
             className="inline-block px-4 py-2 rounded-full text-sm font-semibold mb-4"
             style={{ backgroundColor: "#f0f4f8", color: "#1a3e6e" }}
           >
-            What's New in X17
+            {content.badge}
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-balance" style={{ color: "#1a3e6e" }}>
-            Breakthrough Features That Transform Your Workflow
+            {content.heading}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto text-pretty leading-relaxed">
-            Chief Architect X17 introduces powerful new capabilities designed to accelerate your design process and
-            deliver exceptional results.
+            {content.description}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {features.map((feature, index) => {
-            const Icon = feature.icon
+          {content.features?.map((feature, index) => {
+            const Icon = icons[index % icons.length]
             return (
               <div
                 key={index}

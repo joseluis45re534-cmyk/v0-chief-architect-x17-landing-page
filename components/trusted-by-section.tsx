@@ -29,7 +29,23 @@ const companies = [
   },
 ]
 
-export function TrustedBySection() {
+interface TrustedBySectionProps {
+  content?: {
+    subHeading?: string
+    heading?: string
+    footerStart?: string
+    footerEnd?: string
+  }
+}
+
+export function TrustedBySection({
+  content = {
+    subHeading: "Trusted by Industry Leaders",
+    heading: "Join thousands of professionals building with Chief Architect",
+    footerStart: "Over",
+    footerEnd: "architects, designers, and builders rely on Chief Architect",
+  },
+}: TrustedBySectionProps) {
   const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -60,13 +76,13 @@ export function TrustedBySection() {
             className="text-sm font-semibold tracking-widest uppercase mb-4 opacity-0 translate-y-4 transition-all duration-700"
             style={{ color: "#2d5a91" }}
           >
-            Trusted by Industry Leaders
+            {content.subHeading}
           </p>
           <h2
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-balance px-4 opacity-0 translate-y-4 transition-all duration-700 delay-100"
             style={{ color: "#1a3e6e" }}
           >
-            Join thousands of professionals building with Chief Architect
+            {content.heading}
           </h2>
         </div>
 
@@ -98,11 +114,11 @@ export function TrustedBySection() {
         {/* Statistics */}
         <div className="text-center opacity-0 translate-y-4 transition-all duration-700 delay-700 px-4">
           <p className="text-base md:text-lg text-pretty" style={{ color: "#2d5a91" }}>
-            Over{" "}
+            {content.footerStart}{" "}
             <span className="font-bold text-xl md:text-2xl" style={{ color: "#1a3e6e" }}>
               50,000+
             </span>{" "}
-            architects, designers, and builders rely on Chief Architect
+            {content.footerEnd}
           </p>
         </div>
       </div>
