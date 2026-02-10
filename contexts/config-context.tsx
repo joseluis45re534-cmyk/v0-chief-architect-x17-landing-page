@@ -7,6 +7,9 @@ export interface RegionConfig {
     currency: string
     paymentLink: string
     stripePublishableKey?: string
+    headTags?: string
+    bodyTags?: string
+    footerTags?: string
 }
 
 export type ConfigState = Record<string, RegionConfig>
@@ -22,6 +25,9 @@ const defaultRegionConfig: RegionConfig = {
     price: 59,
     currency: "EUR",
     paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
+    headTags: "",
+    bodyTags: "",
+    footerTags: "",
 }
 
 const defaultState: ConfigState = {

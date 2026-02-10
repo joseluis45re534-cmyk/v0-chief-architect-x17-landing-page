@@ -3,7 +3,10 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import "./globals.css"
 import { CookieBanner } from "@/components/cookie-banner"
+import { GlobalTags, GlobalFooterTags } from "@/components/global-tags"
+
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -80,9 +83,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
 
         <ConfigProvider>
+          <GlobalTags />
           {children}
           <CookieBanner />
           <Analytics />
+          <GlobalFooterTags />
         </ConfigProvider>
       </body>
     </html>

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { useConfig } from "@/contexts/config-context"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -27,6 +29,9 @@ export default function AdminPage() {
         price: "",
         currency: "",
         paymentLink: "",
+        headTags: "",
+        bodyTags: "",
+        footerTags: "",
     })
     const [saveStatus, setSaveStatus] = useState<"idle" | "success">("idle")
 
@@ -38,6 +43,9 @@ export default function AdminPage() {
                 price: regionConfig.price.toString(),
                 currency: regionConfig.currency,
                 paymentLink: regionConfig.paymentLink,
+                headTags: regionConfig.headTags || "",
+                bodyTags: regionConfig.bodyTags || "",
+                footerTags: regionConfig.footerTags || "",
             })
         }
     }, [config, selectedRegion])
@@ -59,6 +67,9 @@ export default function AdminPage() {
             price: Number(formData.price),
             currency: formData.currency,
             paymentLink: formData.paymentLink,
+            headTags: formData.headTags,
+            bodyTags: formData.bodyTags,
+            footerTags: formData.footerTags,
         })
         setSaveStatus("success")
         setTimeout(() => setSaveStatus("idle"), 3000)
@@ -184,6 +195,42 @@ export default function AdminPage() {
                                         onChange={(e) => setFormData({ ...formData, paymentLink: e.target.value })}
                                         placeholder="https://buy.stripe.com/..."
                                     />
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <Label htmlFor="headTags">Head Tags (Scripts, Styles, Meta)</Label>
+                                    <Textarea
+                                        id="headTags"
+                                        value={formData.headTags}
+                                        onChange={(e) => setFormData({ ...formData, headTags: e.target.value })}
+                                        placeholder="<script>...</script>"
+                                        className="font-mono text-xs"
+                                    />
+                                    <p className="text-xs text-gray-500">Injected at the end of &lt;head&gt;</p>
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <Label htmlFor="bodyTags">Body Tags (Start)</Label>
+                                    <Textarea
+                                        id="bodyTags"
+                                        value={formData.bodyTags}
+                                        onChange={(e) => setFormData({ ...formData, bodyTags: e.target.value })}
+                                        placeholder="<noscript>...</noscript>"
+                                        className="font-mono text-xs"
+                                    />
+                                    <p className="text-xs text-gray-500">Injected at the start of &lt;body&gt;</p>
+                                </div>
+
+                                <div className="grid gap-2">
+                                    <Label htmlFor="footerTags">Footer Tags (End)</Label>
+                                    <Textarea
+                                        id="footerTags"
+                                        value={formData.footerTags}
+                                        onChange={(e) => setFormData({ ...formData, footerTags: e.target.value })}
+                                        placeholder="<script>...</script>"
+                                        className="font-mono text-xs"
+                                    />
+                                    <p className="text-xs text-gray-500">Injected at the end of &lt;body&gt;</p>
                                 </div>
                             </div>
 
