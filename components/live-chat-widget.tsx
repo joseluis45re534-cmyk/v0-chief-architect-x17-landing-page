@@ -120,8 +120,23 @@ export function LiveChatWidget() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: name.trim(), email: email.trim(), message: inputText.trim() }),
             })
-            const data = await res.json()
+
+            // Safely read response text first to avoid JSON parse crash
+            const text = await res.text()
+            let data: any = {}
+            try {
+                data = JSON.parse(text)
+            } catch {
+                // Non-JSON response — API not available (KV not set up or local dev)
+                throw new Error(
+                    res.status === 404
+                        ? "Chat API not found. Make sure the site is deployed on Cloudflare Pages."
+                        : "Chat service is not configured yet. Please set up the CHAT_KV binding in Cloudflare Pages."
+                )
+            }
+
             if (!res.ok) throw new Error(data.error || "Failed to start chat")
+
             const sid = data.sessionId
             setSessionId(sid)
             sessionStorage.setItem("chat_session", JSON.stringify({ sessionId: sid, name, email }))
@@ -298,8 +313,8 @@ export function LiveChatWidget() {
                                         <div className="flex flex-col gap-0.5 max-w-[75%]">
                                             <div
                                                 className={`px-3 py-2 rounded-2xl text-sm ${msg.sender === "user"
-                                                        ? "rounded-br-sm bg-blue-100 text-gray-800"
-                                                        : "rounded-bl-sm text-white"
+                                                    ? "rounded-br-sm bg-blue-100 text-gray-800"
+                                                    : "rounded-bl-sm text-white"
                                                     }`}
                                                 style={msg.sender === "admin" ? { backgroundColor: BRAND_COLOR } : {}}
                                             >
