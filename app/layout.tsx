@@ -6,6 +6,7 @@ import "./globals.css"
 import "./globals.css"
 import { CookieBanner } from "@/components/cookie-banner"
 import { GlobalTags, GlobalFooterTags } from "@/components/global-tags"
+import { GlobalHtmlHeadTags, GlobalHtmlBodyTags, GlobalHtmlFooterTags } from "@/components/global-html-tags"
 import { LiveChatWidget } from "@/components/live-chat-widget"
 
 
@@ -84,12 +85,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
 
         <ConfigProvider>
+          <GlobalHtmlHeadTags />
+          <GlobalHtmlBodyTags />
           <GlobalTags />
           {children}
           <CookieBanner />
           <Analytics />
           <LiveChatWidget />
           <GlobalFooterTags />
+          <GlobalHtmlFooterTags />
         </ConfigProvider>
       </body>
     </html>

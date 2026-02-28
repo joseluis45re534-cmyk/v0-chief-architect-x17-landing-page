@@ -291,9 +291,14 @@ export default function AdminPage() {
         bodyTags: "",
         footerTags: "",
     })
+    const [globalHtml, setGlobalHtml] = useState({
+        headTags: "",
+        bodyTags: "",
+        footerTags: "",
+    })
     const [liveChatScript, setLiveChatScript] = useState("")
     const [saveStatus, setSaveStatus] = useState<"idle" | "success">("idle")
-    const [chatSaveStatus, setChatSaveStatus] = useState<"idle" | "success">("idle")
+    const [globalSaveStatus, setGlobalSaveStatus] = useState<"idle" | "success">("idle")
 
     useEffect(() => {
         const regionConfig = config[selectedRegion] || config["default"]
@@ -311,7 +316,12 @@ export default function AdminPage() {
 
     useEffect(() => {
         setLiveChatScript(globalConfig.liveChatScript || "")
-    }, [globalConfig.liveChatScript])
+        setGlobalHtml({
+            headTags: globalConfig.headTags || "",
+            bodyTags: globalConfig.bodyTags || "",
+            footerTags: globalConfig.footerTags || "",
+        })
+    }, [globalConfig])
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault()
@@ -336,11 +346,16 @@ export default function AdminPage() {
         setTimeout(() => setSaveStatus("idle"), 3000)
     }
 
-    const handleChatSave = (e: React.FormEvent) => {
+    const handleGlobalSave = (e: React.FormEvent) => {
         e.preventDefault()
-        updateGlobalConfig({ liveChatScript })
-        setChatSaveStatus("success")
-        setTimeout(() => setChatSaveStatus("idle"), 3000)
+        updateGlobalConfig({
+            liveChatScript,
+            headTags: globalHtml.headTags,
+            bodyTags: globalHtml.bodyTags,
+            footerTags: globalHtml.footerTags,
+        })
+        setGlobalSaveStatus("success")
+        setTimeout(() => setGlobalSaveStatus("idle"), 3000)
     }
 
     if (!isAuthenticated) {
@@ -542,36 +557,76 @@ export default function AdminPage() {
                             </CardContent>
                         </Card>
 
-                        {/* 3rd-party Chat Script (optional, kept for flexibility) */}
+                        {/* Global Scripts & Tags */}
                         <Card>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
-                                    <MessageCircle className="h-5 w-5" />
-                                    3rd-Party Chat Script (Optional)
+                                    <Globe className="h-5 w-5" />
+                                    Global Tags & 3rd-Party Scripts
                                 </CardTitle>
                                 <CardDescription>
-                                    If you prefer a 3rd-party chat (Tidio, Intercom, etc.) instead of the built-in chat, paste its embed script here.
+                                    These tags are injected on <b>all pages</b> across all regions. Perfect for analytics, tracking pixels, or 3rd-party chat widgets.
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <form onSubmit={handleChatSave} className="space-y-4">
-                                    <div className="grid gap-2">
-                                        <Label htmlFor="liveChatScript">Embed Script</Label>
-                                        <Textarea
-                                            id="liveChatScript"
-                                            value={liveChatScript}
-                                            onChange={(e) => setLiveChatScript(e.target.value)}
-                                            placeholder={`<!-- Example: Tidio -->\n<script src="//code.tidio.co/XXXXXXXXXX.js" async></script>`}
-                                            className="font-mono text-xs min-h-[100px]"
-                                        />
+                                <form onSubmit={handleGlobalSave} className="space-y-6">
+                                    <div className="grid gap-4">
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="globalHeadTags">Global Head Tags</Label>
+                                            <Textarea
+                                                id="globalHeadTags"
+                                                value={globalHtml.headTags}
+                                                onChange={(e) => setGlobalHtml({ ...globalHtml, headTags: e.target.value })}
+                                                placeholder="<script>...</script>"
+                                                className="font-mono text-xs"
+                                            />
+                                            <p className="text-xs text-gray-500">Injected into &lt;head&gt; on all pages</p>
+                                        </div>
+
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="globalBodyTags">Global Body Start Tags</Label>
+                                            <Textarea
+                                                id="globalBodyTags"
+                                                value={globalHtml.bodyTags}
+                                                onChange={(e) => setGlobalHtml({ ...globalHtml, bodyTags: e.target.value })}
+                                                placeholder="<noscript>...</noscript>"
+                                                className="font-mono text-xs"
+                                            />
+                                            <p className="text-xs text-gray-500">Injected immediately after &lt;body&gt; on all pages</p>
+                                        </div>
+
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="globalFooterTags">Global Footer Tags</Label>
+                                            <Textarea
+                                                id="globalFooterTags"
+                                                value={globalHtml.footerTags}
+                                                onChange={(e) => setGlobalHtml({ ...globalHtml, footerTags: e.target.value })}
+                                                placeholder="<script>...</script>"
+                                                className="font-mono text-xs"
+                                            />
+                                            <p className="text-xs text-gray-500">Injected before &lt;/body&gt; on all pages</p>
+                                        </div>
+
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="liveChatScript">3rd-Party Chat Script (Optional)</Label>
+                                            <Textarea
+                                                id="liveChatScript"
+                                                value={liveChatScript}
+                                                onChange={(e) => setLiveChatScript(e.target.value)}
+                                                placeholder={`<!-- Example: Tidio -->\n<script src="//code.tidio.co/XXXXXXXXXX.js" async></script>`}
+                                                className="font-mono text-xs min-h-[100px]"
+                                            />
+                                            <p className="text-xs text-gray-500">Leave blank if using the built-in live chat.</p>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center justify-between">
+
+                                    <div className="flex items-center justify-between pt-4 border-t">
                                         <div className="text-sm text-green-600 font-medium">
-                                            {chatSaveStatus === "success" && "Script saved!"}
+                                            {globalSaveStatus === "success" && "Global settings saved!"}
                                         </div>
                                         <Button type="submit">
                                             <Save className="w-4 h-4 mr-2" />
-                                            Save Script
+                                            Save Global Scripts
                                         </Button>
                                     </div>
                                 </form>

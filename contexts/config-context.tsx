@@ -16,10 +16,16 @@ export type ConfigState = Record<string, RegionConfig>
 
 export interface GlobalSiteConfig {
     liveChatScript: string
+    headTags?: string
+    bodyTags?: string
+    footerTags?: string
 }
 
 const defaultGlobalConfig: GlobalSiteConfig = {
     liveChatScript: "",
+    headTags: "",
+    bodyTags: "",
+    footerTags: "",
 }
 
 interface ConfigContextType {
