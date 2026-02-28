@@ -13,10 +13,11 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     }
 
     try {
-        const { sessionId, text, sender } = await context.request.json() as {
+        const { sessionId, text, sender, id } = await context.request.json() as {
             sessionId: string
             text: string
             sender: "user" | "admin"
+            id?: string
         }
 
         if (!sessionId || !text || !sender) {
@@ -30,7 +31,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
 
         const session = JSON.parse(sessionRaw)
         session.messages.push({
-            id: crypto.randomUUID(),
+            id: id || crypto.randomUUID(),
             sender,
             text,
             timestamp: Date.now(),

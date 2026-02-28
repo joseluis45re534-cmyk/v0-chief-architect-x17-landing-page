@@ -13,10 +13,11 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     }
 
     try {
-        const { name, email, message } = await context.request.json() as {
+        const { name, email, message, messageId } = await context.request.json() as {
             name: string
             email: string
             message: string
+            messageId?: string
         }
 
         if (!email || !message) {
@@ -34,7 +35,7 @@ export const onRequest: PagesFunction<Env> = async (context) => {
             startedAt: now,
             messages: [
                 {
-                    id: crypto.randomUUID(),
+                    id: messageId || crypto.randomUUID(),
                     sender: "user",
                     text: message,
                     timestamp: now,

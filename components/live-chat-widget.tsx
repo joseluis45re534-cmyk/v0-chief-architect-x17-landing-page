@@ -115,10 +115,12 @@ export function LiveChatWidget() {
         setLoading(true)
         setError("")
         try {
+            // Generate ID client-side so poller deduplication works
+            const firstMsgId = crypto.randomUUID()
             const res = await fetch("/api/chat/start", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: name.trim(), email: email.trim(), message: inputText.trim() }),
+                body: JSON.stringify({ name: name.trim(), email: email.trim(), message: inputText.trim(), messageId: firstMsgId }),
             })
 
             // Safely read response text first to avoid JSON parse crash
@@ -127,7 +129,6 @@ export function LiveChatWidget() {
             try {
                 data = JSON.parse(text)
             } catch {
-                // Non-JSON response — API not available (KV not set up or local dev)
                 throw new Error(
                     res.status === 404
                         ? "Chat API not found. Make sure the site is deployed on Cloudflare Pages."
@@ -141,7 +142,7 @@ export function LiveChatWidget() {
             setSessionId(sid)
             sessionStorage.setItem("chat_session", JSON.stringify({ sessionId: sid, name, email }))
             const firstMsg: Message = {
-                id: crypto.randomUUID(),
+                id: firstMsgId,
                 sender: "user",
                 text: inputText.trim(),
                 timestamp: Date.now(),
@@ -162,8 +163,10 @@ export function LiveChatWidget() {
         if (!inputText.trim() || !sessionId) return
         const text = inputText.trim()
         setInputText("")
+        // Generate ID client-side, pass it to server so poller deduplication works
+        const msgId = crypto.randomUUID()
         const optimistic: Message = {
-            id: crypto.randomUUID(),
+            id: msgId,
             sender: "user",
             text,
             timestamp: Date.now(),
@@ -173,7 +176,7 @@ export function LiveChatWidget() {
             await fetch("/api/chat/send", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ sessionId, text, sender: "user" }),
+                body: JSON.stringify({ sessionId, text, sender: "user", id: msgId }),
             })
         } catch { }
     }
