@@ -1,5 +1,6 @@
 name = "v0-chief-architect-x17-landing-page"
 compatibility_date = "2024-01-01"
+pages_build_output_dir = "./out"
 
 [[kv_namespaces]]
 binding = "CHAT_KV"
