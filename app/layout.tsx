@@ -6,6 +6,7 @@ import "./globals.css"
 import "./globals.css"
 import { CookieBanner } from "@/components/cookie-banner"
 import { GlobalTags, GlobalFooterTags } from "@/components/global-tags"
+import { LiveChatWidget } from "@/components/live-chat-widget"
 
 
 const _geist = Geist({ subsets: ["latin"] })
@@ -87,6 +88,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           {children}
           <CookieBanner />
           <Analytics />
+          <LiveChatWidget />
           <GlobalFooterTags />
         </ConfigProvider>
       </body>

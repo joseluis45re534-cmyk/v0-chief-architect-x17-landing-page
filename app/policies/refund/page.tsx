@@ -57,8 +57,8 @@ export default function RefundPolicyPage() {
               <ol className="list-decimal pl-6 space-y-2 text-gray-700">
                 <li>
                   Contact our support team at{" "}
-                  <a href="mailto:refunds@chiefarchitect.com" className="text-[#2d5a91] hover:underline">
-                    refunds@chiefarchitect.com
+                  <a href="mailto:support@chiefarchitectpro.com" className="text-[#2d5a91] hover:underline">
+                    support@chiefarchitectpro.com
                   </a>
                 </li>
                 <li>Include your order number and reason for refund</li>
@@ -96,8 +96,8 @@ export default function RefundPolicyPage() {
               </h2>
               <p className="text-gray-700 leading-relaxed">
                 If you have questions about our refund policy, please contact us at{" "}
-                <a href="mailto:support@chiefarchitect.com" className="text-[#2d5a91] hover:underline">
-                  support@chiefarchitect.com
+                <a href="mailto:support@chiefarchitectpro.com" className="text-[#2d5a91] hover:underline">
+                  support@chiefarchitectpro.com
                 </a>
               </p>
             </section>

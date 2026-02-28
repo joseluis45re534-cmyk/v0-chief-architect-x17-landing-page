@@ -14,9 +14,19 @@ export interface RegionConfig {
 
 export type ConfigState = Record<string, RegionConfig>
 
+export interface GlobalSiteConfig {
+    liveChatScript: string
+}
+
+const defaultGlobalConfig: GlobalSiteConfig = {
+    liveChatScript: "",
+}
+
 interface ConfigContextType {
     config: ConfigState
+    globalConfig: GlobalSiteConfig
     updateConfig: (region: string, newConfig: Partial<RegionConfig>) => void
+    updateGlobalConfig: (newConfig: Partial<GlobalSiteConfig>) => void
     getRegionConfig: (region: string) => RegionConfig & { currencySymbol: string }
     isLoading: boolean
 }
@@ -42,6 +52,7 @@ const ConfigContext = createContext<ConfigContextType | undefined>(undefined)
 
 export function ConfigProvider({ children }: { children: ReactNode }) {
     const [config, setConfig] = useState<ConfigState>(defaultState)
+    const [globalConfig, setGlobalConfig] = useState<GlobalSiteConfig>(defaultGlobalConfig)
     const [isLoading, setIsLoading] = useState(true)
 
     // Load from localStorage on mount
@@ -63,6 +74,16 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
             }
         } catch (e) {
             console.error("Failed to load config from storage", e)
+        }
+
+        // Load global config
+        try {
+            const storedGlobal = localStorage.getItem("site_global_config")
+            if (storedGlobal) {
+                setGlobalConfig((prev) => ({ ...prev, ...JSON.parse(storedGlobal) }))
+            }
+        } catch (e) {
+            console.error("Failed to load global config from storage", e)
         } finally {
             setIsLoading(false)
         }
@@ -78,6 +99,14 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
                 },
             }
             localStorage.setItem("site_config_v2", JSON.stringify(updated))
+            return updated
+        })
+    }
+
+    const updateGlobalConfig = (newConfig: Partial<GlobalSiteConfig>) => {
+        setGlobalConfig((prev) => {
+            const updated = { ...prev, ...newConfig }
+            localStorage.setItem("site_global_config", JSON.stringify(updated))
             return updated
         })
     }
@@ -99,7 +128,9 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
         <ConfigContext.Provider
             value={{
                 config,
+                globalConfig,
                 updateConfig,
+                updateGlobalConfig,
                 getRegionConfig,
                 isLoading,
             }}

@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Lock, Save, AlertCircle, Globe } from "lucide-react"
+import { Lock, Save, AlertCircle, Globe, MessageCircle } from "lucide-react"
 
 const REGIONS = [
     { id: "default", name: "Default (Global)", flag: "🌐" },
@@ -21,7 +21,7 @@ const REGIONS = [
 ]
 
 export default function AdminPage() {
-    const { config, updateConfig } = useConfig()
+    const { config, updateConfig, globalConfig, updateGlobalConfig } = useConfig()
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [password, setPassword] = useState("")
     const [selectedRegion, setSelectedRegion] = useState("default")
@@ -33,7 +33,9 @@ export default function AdminPage() {
         bodyTags: "",
         footerTags: "",
     })
+    const [liveChatScript, setLiveChatScript] = useState("")
     const [saveStatus, setSaveStatus] = useState<"idle" | "success">("idle")
+    const [chatSaveStatus, setChatSaveStatus] = useState<"idle" | "success">("idle")
 
     // Initialize form data when config or region changes
     useEffect(() => {
@@ -49,6 +51,11 @@ export default function AdminPage() {
             })
         }
     }, [config, selectedRegion])
+
+    // Sync live chat script from global config
+    useEffect(() => {
+        setLiveChatScript(globalConfig.liveChatScript || "")
+    }, [globalConfig.liveChatScript])
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault()
@@ -73,6 +80,13 @@ export default function AdminPage() {
         })
         setSaveStatus("success")
         setTimeout(() => setSaveStatus("idle"), 3000)
+    }
+
+    const handleChatSave = (e: React.FormEvent) => {
+        e.preventDefault()
+        updateGlobalConfig({ liveChatScript })
+        setChatSaveStatus("success")
+        setTimeout(() => setChatSaveStatus("idle"), 3000)
     }
 
     if (!isAuthenticated) {
@@ -241,6 +255,57 @@ export default function AdminPage() {
                                 <Button type="submit">
                                     <Save className="w-4 h-4 mr-2" />
                                     Save Changes
+                                </Button>
+                            </div>
+                        </form>
+                    </CardContent>
+                </Card>
+
+                {/* Live Chat Configuration */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            <MessageCircle className="h-5 w-5" />
+                            Live Chat Configuration
+                        </CardTitle>
+                        <CardDescription>
+                            Paste your live chat widget embed script here. Supports Tidio, Crisp, Tawk.to, Intercom, LiveChat and more.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <form onSubmit={handleChatSave} className="space-y-4">
+                            <div className="grid gap-2">
+                                <Label htmlFor="liveChatScript">Embed Script</Label>
+                                <Textarea
+                                    id="liveChatScript"
+                                    value={liveChatScript}
+                                    onChange={(e) => setLiveChatScript(e.target.value)}
+                                    placeholder={`<!-- Example: Tidio -->\n<script src="//code.tidio.co/XXXXXXXXXX.js" async></script>\n\n<!-- Example: Tawk.to -->\n<script>var Tawk_API=Tawk_API||{} ...</script>`}
+                                    className="font-mono text-xs min-h-[140px]"
+                                />
+                                <p className="text-xs text-gray-500">
+                                    The script will be injected into the page and a sticky 💬 chat button will appear on all pages. Leave empty to hide the button.
+                                </p>
+                            </div>
+
+                            <Alert variant="default" className="bg-amber-50 border-amber-200 text-amber-800">
+                                <AlertCircle className="h-4 w-4" />
+                                <AlertTitle>Popular Live Chat Services</AlertTitle>
+                                <AlertDescription className="text-xs space-y-1 mt-1">
+                                    <div>• <strong>Tidio:</strong> tidio.com → Settings → Widget → Get code</div>
+                                    <div>• <strong>Crisp:</strong> crisp.chat → Settings → Integrations → Setup Instructions</div>
+                                    <div>• <strong>Tawk.to:</strong> tawk.to → Administration → Widget Code</div>
+                                    <div>• <strong>Intercom:</strong> intercom.com → Settings → Installation</div>
+                                </AlertDescription>
+                            </Alert>
+
+                            <div className="flex items-center justify-between">
+                                <div className="text-sm text-green-600 font-medium">
+                                    {chatSaveStatus === "success" && "Live chat script saved!"}
+                                </div>
+                                <Button type="submit">
+                                    <Save className="w-4 h-4 mr-2" />
+                                    Save Chat Script
                                 </Button>
                             </div>
                         </form>

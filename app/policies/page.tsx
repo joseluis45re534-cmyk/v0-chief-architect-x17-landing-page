@@ -77,7 +77,7 @@ export default function PoliciesPage() {
                   request a full refund within 30 days of your purchase date.
                 </p>
                 <p>
-                  <strong>How to Request a Refund:</strong> Contact our support team at support@chiefarchitect.com with
+                  <strong>How to Request a Refund:</strong> Contact our support team at support@chiefarchitectpro.com with
                   your order number and reason for the refund request.
                 </p>
                 <p>
@@ -94,7 +94,7 @@ export default function PoliciesPage() {
               <div className="text-gray-700 space-y-2 leading-relaxed">
                 <p>If you have any questions about these policies, please contact us:</p>
                 <p>
-                  <strong>Email:</strong> support@chiefarchitect.com
+                  <strong>Email:</strong> support@chiefarchitectpro.com
                 </p>
                 <p>
                   <strong>Phone:</strong> 1-800-482-4433

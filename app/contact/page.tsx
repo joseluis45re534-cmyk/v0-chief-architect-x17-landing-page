@@ -70,7 +70,7 @@ export default function ContactPage() {
                     <h3 className="font-bold text-lg mb-1" style={{ color: "#1a3e6e" }}>
                       Email
                     </h3>
-                    <p className="text-gray-600">support@chiefarchitect.pro</p>
+                    <p className="text-gray-600">support@chiefarchitectpro.com</p>
                   </div>
                 </div>
               </div>
