@@ -71,7 +71,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             `,
           }}
         />
-        <script src="//code.jivosite.com/widget/5YJwlXjzAo" async></script>
+
       </head>
       <body className={`font-sans antialiased`}>
         <noscript>
