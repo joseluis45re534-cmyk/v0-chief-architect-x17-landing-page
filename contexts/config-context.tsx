@@ -39,7 +39,7 @@ interface ConfigContextType {
 
 const defaultRegionConfig: RegionConfig = {
     price: 59,
-    currency: "EUR",
+    currency: "USD",
     paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
     headTags: "",
     bodyTags: "",
@@ -48,8 +48,8 @@ const defaultRegionConfig: RegionConfig = {
 
 const defaultState: ConfigState = {
     default: { ...defaultRegionConfig },
-    fr: { ...defaultRegionConfig },
-    de: { ...defaultRegionConfig },
+    fr: { ...defaultRegionConfig, currency: "EUR" },
+    de: { ...defaultRegionConfig, currency: "EUR" },
     gb: { ...defaultRegionConfig, currency: "GBP", price: 49 },
     ca: { ...defaultRegionConfig, currency: "CAD", price: 79 },
 }
