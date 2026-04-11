@@ -58,10 +58,9 @@ export function PricingSection({
   const { price, currency, paymentLink, currencySymbol } = getRegionConfig(region)
 
   const pricing = {
-    ...propPricing,
-    price,
-    currencyCode: currency,
-    currencySymbol,
+    price: price || propPricing.price,
+    currencyCode: currency || propPricing.currencyCode,
+    currencySymbol: currencySymbol || propPricing.currencySymbol,
     paymentLink: paymentLink || propPricing.paymentLink,
   }
 

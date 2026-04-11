@@ -35,10 +35,17 @@ export const metadata = {
 }
 
 export default function CAPage() {
+  const caPricing = {
+    price: 95,
+    currencyCode: "CAD",
+    currencySymbol: "$",
+    paymentLink: "https://buy.stripe.com/bJe28l6KR8o64YZc6fbII03",
+  }
+
   return (
     <main className="min-h-screen">
       <HeaderFr region="ca" />
-      <HeroSectionFr region="ca" />
+      <HeroSectionFr region="ca" pricing={caPricing} />
       <TrustedBySection />
       <WhatsNewSection />
       <VideoSection />
@@ -46,8 +53,8 @@ export default function CAPage() {
       <ComparisonSection />
       <TestimonialsSection />
       <SystemRequirementsSection />
-      <PricingSectionFr region="ca" />
-      <GuaranteeSectionFr region="ca" />
+      <PricingSectionFr region="ca" pricing={caPricing} />
+      <GuaranteeSectionFr region="ca" pricing={caPricing} />
       <Footer />
 
       {/* Schema.org Product structured data */}

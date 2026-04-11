@@ -45,7 +45,7 @@ export default function Page() {
         currencySymbol: "£",
         currencyCode: "GBP",
         price: 59,
-        paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00", // Note: Verify if a different link is needed for GBP
+        paymentLink: "https://buy.stripe.com/bJe28l6KR8o64YZc6fbII03",
     }
 
     const gbContent = {

@@ -5,3 +5,5 @@ pages_build_output_dir = "./out"
 [[kv_namespaces]]
 binding = "CHAT_KV"
 id = "e65c7ea0356d4ed685490ee83b59b529"
+
+

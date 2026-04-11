@@ -9,11 +9,32 @@ import { useConfig } from "@/contexts/config-context"
 
 interface HeroSectionFrProps {
   region?: string
+  pricing?: {
+    currencySymbol: string
+    currencyCode: string
+    price: number
+    paymentLink?: string
+  }
 }
 
-export function HeroSectionFr({ region = "ca" }: HeroSectionFrProps) {
+export function HeroSectionFr({
+  region = "ca",
+  pricing: propPricing = {
+    currencySymbol: "$",
+    currencyCode: "CAD",
+    price: 95,
+    paymentLink: "https://buy.stripe.com/bJe28l6KR8o64YZc6fbII03",
+  },
+}: HeroSectionFrProps) {
   const { getRegionConfig } = useConfig()
-  const { price, currency, paymentLink } = getRegionConfig(region)
+  const { price, currency, paymentLink, currencySymbol } = getRegionConfig(region)
+
+  const pricing = {
+    price: price || propPricing.price,
+    currencyCode: currency || propPricing.currencyCode,
+    currencySymbol: currencySymbol || propPricing.currencySymbol,
+    paymentLink: paymentLink || propPricing.paymentLink,
+  }
 
   const heroRef = useRef<HTMLElement>(null)
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
@@ -112,7 +133,7 @@ export function HeroSectionFr({ region = "ca" }: HeroSectionFrProps) {
                   onClick={handleBuyNowClick}
                   data-event="add_to_cart"
                   data-product="chief-architect-x17"
-                  data-value="95"
+                  data-value={price}
                 >
                   Acheter maintenant - {price} {currency === "EUR" ? "€" : "$ " + currency}
                   <ArrowRight className="ml-2 h-5 w-5" />

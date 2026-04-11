@@ -53,12 +53,11 @@ export function HeroSection({
   const { getRegionConfig } = useConfig()
   const { price, currency, paymentLink, currencySymbol } = getRegionConfig(region)
 
-  // Merge prop pricing with context config (context takes precedence)
+  // Determine if context values should be used
   const pricing = {
-    ...propPricing,
-    price,
-    currencyCode: currency,
-    currencySymbol,
+    price: price || propPricing.price,
+    currencyCode: currency || propPricing.currencyCode,
+    currencySymbol: currencySymbol || propPricing.currencySymbol,
     paymentLink: paymentLink || propPricing.paymentLink,
   }
 
