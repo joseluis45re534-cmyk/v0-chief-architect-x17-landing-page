@@ -42,10 +42,10 @@ export const metadata = {
 
 export default function Page() {
   const pricing = {
-    price: 59,
-    currencyCode: "EUR",
-    currencySymbol: "€",
-    paymentLink: "https://buy.stripe.com/bJe28l6KR8o64YZc6fbII03",
+    price: 69,
+    currencyCode: "USD",
+    currencySymbol: "$",
+    paymentLink: "https://buy.stripe.com/28EfZj51fbWJ4Fu2xr9sk05",
   }
 
   return (

@@ -50,7 +50,7 @@ export function PricingSection({
     currencySymbol: "$",
     currencyCode: "USD",
     price: 69,
-    paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
+    paymentLink: "https://buy.stripe.com/28EfZj51fbWJ4Fu2xr9sk05",
   },
   region = "default",
 }: PricingSectionProps & { region?: string }) {

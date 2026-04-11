@@ -23,7 +23,7 @@ export function HeroSectionFr({
     currencySymbol: "$",
     currencyCode: "CAD",
     price: 95,
-    paymentLink: "https://buy.stripe.com/bJe28l6KR8o64YZc6fbII03",
+    paymentLink: "https://buy.stripe.com/6oU4gBeBP5yl5Jy0pj9sk04",
   },
 }: HeroSectionFrProps) {
   const { getRegionConfig } = useConfig()

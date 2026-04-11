@@ -38,9 +38,9 @@ interface ConfigContextType {
 }
 
 const defaultRegionConfig: RegionConfig = {
-    price: 59,
+    price: 69,
     currency: "USD",
-    paymentLink: "https://buy.stripe.com/bJe28l6KR8o64YZc6fbII03",
+    paymentLink: "https://buy.stripe.com/28EfZj51fbWJ4Fu2xr9sk05",
     headTags: "",
     bodyTags: "",
     footerTags: "",
@@ -48,10 +48,10 @@ const defaultRegionConfig: RegionConfig = {
 
 const defaultState: ConfigState = {
     default: { ...defaultRegionConfig },
-    fr: { ...defaultRegionConfig, currency: "EUR" },
-    de: { ...defaultRegionConfig, currency: "EUR" },
-    gb: { ...defaultRegionConfig, currency: "GBP", price: 59 },
-    ca: { ...defaultRegionConfig, currency: "CAD", price: 79 },
+    fr: { ...defaultRegionConfig, currency: "EUR", paymentLink: "https://buy.stripe.com/6oU4gBeBP5yl5Jy0pj9sk04" },
+    de: { ...defaultRegionConfig, currency: "EUR", paymentLink: "https://buy.stripe.com/6oU4gBeBP5yl5Jy0pj9sk04" },
+    gb: { ...defaultRegionConfig, currency: "GBP", price: 59, paymentLink: "https://buy.stripe.com/6oU4gBeBP5yl5Jy0pj9sk04" },
+    ca: { ...defaultRegionConfig, currency: "CAD", price: 79, paymentLink: "https://buy.stripe.com/6oU4gBeBP5yl5Jy0pj9sk04" },
 }
 
 const ConfigContext = createContext<ConfigContextType | undefined>(undefined)
@@ -64,7 +64,7 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
     // Load from localStorage on mount
     useEffect(() => {
         try {
-            const stored = localStorage.getItem("site_config_v2")
+            const stored = localStorage.getItem("site_config_v3")
             if (stored) {
                 setConfig((prev) => ({ ...prev, ...JSON.parse(stored) }))
             } else {
@@ -104,7 +104,7 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
                     ...newConfig,
                 },
             }
-            localStorage.setItem("site_config_v2", JSON.stringify(updated))
+            localStorage.setItem("site_config_v3", JSON.stringify(updated))
             return updated
         })
     }

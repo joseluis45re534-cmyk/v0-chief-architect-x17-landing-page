@@ -45,7 +45,7 @@ export default function Page() {
         currencySymbol: "€",
         currencyCode: "EUR",
         price: 59,
-        paymentLink: "https://buy.stripe.com/bJe28l6KR8o64YZc6fbII03",
+        paymentLink: "https://buy.stripe.com/6oU4gBeBP5yl5Jy0pj9sk04",
     }
 
     const frContent = {
