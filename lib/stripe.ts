@@ -10,5 +10,5 @@ export const STRIPE_PRODUCT = {
   name: "Chief Architect X17 - Full Version",
   price: 69.0,
   currency: "USD",
-  paymentLink: "https://buy.stripe.com/5kQ5kDamQ66tdLI8oEdAk00",
+  paymentLink: "https://buy.stripe.com/14A28qfPw0B0cte59TcEw01",
 }

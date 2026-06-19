@@ -39,7 +39,7 @@ export default function CAPage() {
     price: 95,
     currencyCode: "CAD",
     currencySymbol: "$",
-    paymentLink: "https://buy.stripe.com/6oU4gBeBP5yl5Jy0pj9sk04",
+    paymentLink: "https://buy.stripe.com/14A28qfPw0B0cte59TcEw01",
   }
 
   return (
